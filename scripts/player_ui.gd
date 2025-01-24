@@ -9,6 +9,7 @@ var health : int = 100
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	lbl_hp.text = "HP: " + str(health)
+	lbl_player_stationary = $MarginContainer2/is_stationary
 	lbl_player_stationary.text = "is_stationary: " + str(get_parent().is_stationary)
 	
 

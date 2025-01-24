@@ -8,7 +8,7 @@ const JUMP_VELOCITY = 4.5
 @onready var cam_first : Camera3D = $Head/First
 
 var is_stationary = true
-var start_rot = Quaternion(transform.basis)
+var delta_sum: float = 0
 var target_rot = Quaternion(transform.basis)
 
 var motion : int = 0
@@ -20,7 +20,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-
+	
+	if !is_stationary:
+		delta_sum += delta
+		if delta_sum > 1:
+			delta_sum = 1
+	
 	if Input.is_action_pressed("forward"):
 		print("forward")
 
@@ -30,23 +35,21 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("left"):
 		if is_stationary:
 			is_stationary = false
-			start_rot = Quaternion(transform.basis)
-			target_rot = (start_rot * Quaternion(0, 1, 0, 1)).normalized()
+			delta_sum = 0
+			target_rot = (Quaternion(transform.basis) * Quaternion(0, 1, 0, 1)).normalized()
 			print("Left")
 			
 	elif Input.is_action_pressed("right"):
 		if is_stationary:
 			is_stationary = false
-			start_rot = Quaternion(transform.basis)
-			target_rot = (start_rot * Quaternion(0, -1, 0, 1)).normalized()
+			delta_sum = 0
+			target_rot = (Quaternion(transform.basis) * Quaternion(0, -1, 0, 1)).normalized()
 			print("Right")
 	
-	transform.basis = Basis(Quaternion(transform.basis).slerp(target_rot, delta))
+	transform.basis = Basis(Quaternion(transform.basis).slerp(target_rot, delta_sum))
 	
 	if !is_stationary:
 		if target_rot == Quaternion(transform.basis):
-			start_rot = Quaternion(transform.basis)
-			target_rot = Quaternion(transform.basis)
 			is_stationary = true
 			
 		else:
