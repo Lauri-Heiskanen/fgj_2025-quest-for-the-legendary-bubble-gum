@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv6up7cv2qqg8"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
+[ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xby0o"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h473f"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bqdjl"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_dbqef")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xby0o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h473f")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45604, 0)
+mesh = SubResource("BoxMesh_bqdjl")
+
+[node name="First" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13659, -0.441063)
+
+[node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
