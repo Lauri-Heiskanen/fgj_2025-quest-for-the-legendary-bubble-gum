@@ -12,7 +12,7 @@ var is_rotating: bool = false
 var delta_sum: float = 0
 
 var target_rot: Quaternion = Quaternion(transform.basis)
-var target_pos: Transform3D
+var target_pos: Transform3D = transform
 
 var motion : int = 0
 var turn : int = 0
@@ -26,23 +26,29 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("forward"):
 		if !is_rotating && !is_moving:
-			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized(): # facing front
+			# check if facing front
+			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized():
 				is_moving = true
 				delta_sum = 0
-				target_pos = transform
-			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized(): # faciong back
+				target_pos = transform.translated(Vector3(0, 0, -4))
+			# check if facing back
+			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized():
 				is_moving = true
 				delta_sum = 0
-				target_pos = transform
-				
-			
-			
-
+				target_pos = transform.translated(Vector3(0, 0, 4))
+	
 	elif Input.is_action_pressed("backward"):
 		if !is_rotating && !is_moving:
-			# is_moving = true
-			delta_sum = 0
-			print("backward")
+			# check if facing front
+			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized():
+				is_moving = true
+				delta_sum = 0
+				target_pos = transform.translated(Vector3(0, 0, 4))
+			# check if facing back
+			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized():
+				is_moving = true
+				delta_sum = 0
+				target_pos = transform.translated(Vector3(0, 0, -4))
 		
 	elif Input.is_action_pressed("left"):
 		if !is_rotating && !is_moving:
@@ -61,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		if delta_sum > 1:
 			delta_sum = 1
 	elif is_moving:
-		delta_sum += delta  # movement speed multiplier
+		delta_sum += delta * 2 # movement speed multiplier
 		if delta_sum > 1:
 			delta_sum = 1
 	
@@ -73,11 +79,12 @@ func _physics_process(delta: float) -> void:
 			transform.basis = Basis(Quaternion(transform.basis).slerp(target_rot, delta_sum))
 			
 	if is_moving:
+		print(delta_sum)
 		if delta_sum == 1:
-			transform.basis = Basis(target_rot)
-			is_rotating = false
+			transform = target_pos
+			is_moving = false
 		elif delta_sum < 1:
-			transform.basis = Basis(Quaternion(transform.basis).slerp(target_rot, delta_sum))
+			transform = transform.interpolate_with(target_pos, delta_sum)
 
 
 	move_and_slide()
