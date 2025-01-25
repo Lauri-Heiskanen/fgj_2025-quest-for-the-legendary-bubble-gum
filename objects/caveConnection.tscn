@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpkk74wpmaybq"]
+
+[ext_resource type="PackedScene" uid="uid://c0hhu0ek83urw" path="res://3dModels/cave.glb" id="1_0fy1e"]
+
+[node name="CaveConnection" type="Node3D"]
+
+[node name="cave" parent="." instance=ExtResource("1_0fy1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142734, 0, -1.98844)

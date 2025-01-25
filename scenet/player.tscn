@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv6up7cv2qqg8"]
+[gd_scene load_steps=6 format=3 uid="uid://1ohsnw7del1s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
 [ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
@@ -33,9 +33,19 @@ fov = 85.0
 [node name="RayCast3D" type="RayCast3D" parent="Head/First"]
 target_position = Vector3(0, 0, -4)
 
+[node name="RayCast3D2" type="RayCast3D" parent="Head/First"]
+target_position = Vector3(0, 0, 4)
+
 [node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
 
 [node name="Time_Until_Demise" type="Timer" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
+omni_range = 4.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
+omni_range = 4.0
 
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 [connection signal="timeout" from="Time_Until_Demise" to="." method="_on_time_until_demise_timeout"]

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi41no7bigerb"
-path.s3tc="res://.godot/imported/hallway_Normal map.png-2327c5a42cc68baeeea69f9fab3e2ff4.s3tc.ctex"
+uid="uid://v57yta1cef6b"
+path.s3tc="res://.godot/imported/doorway_Normal map.png-63719c485336d2d2782b52062847ad9e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://3dModels/hallway_Normal map.png"
-dest_files=["res://.godot/imported/hallway_Normal map.png-2327c5a42cc68baeeea69f9fab3e2ff4.s3tc.ctex"]
+source_file="res://3dModels/doorway_Normal map.png"
+dest_files=["res://.godot/imported/doorway_Normal map.png-63719c485336d2d2782b52062847ad9e.s3tc.ctex"]
 
 [params]
 
@@ -28,7 +28,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://blenderFiles/hallway_Normal map.png"
+roughness/src_normal="res://blenderFiles/doorway_Normal map.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

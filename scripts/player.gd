@@ -11,6 +11,7 @@ const JUMP_VELOCITY = 4.5
 @onready var head : MeshInstance3D = $Head
 @onready var cam_first : Camera3D = $Head/First
 @onready var ray : RayCast3D = $Head/First/RayCast3D
+@onready var ray2 : RayCast3D = $Head/First/RayCast3D2
 
 @onready var hotbar : HBoxContainer = $PlayerUI/hotbar_container/hotbar
 var player_items : Array = [null, null, null, null] # create array to store item information
@@ -37,44 +38,19 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("forward"):
-		if !is_rotating && !is_moving:
-			# check if facing front
-			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized():
-				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, -4)).origin))
-				print(ray_cast_res)
-				if !ray_cast_res.has("position"):
-					is_moving = true
-					delta_sum = 0
-					target_pos = transform.translated(Vector3(0, 0, -4))
-			# check if facing back
-			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized():
-				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, 4)).origin))
-				print(ray_cast_res)
-				if !ray_cast_res.has("position"):
-					is_moving = true
-					delta_sum = 0
-					target_pos = transform.translated(Vector3(0, 0, 4))
+		if !is_rotating && !is_moving && !ray.is_colliding():
+			is_moving = true
+			delta_sum = 0
+			var player_quat = Quaternion(transform.basis)
+			target_pos = transform.translated(ray.target_position.rotated(player_quat.get_axis().normalized(), player_quat.get_angle()))
 	
 	elif Input.is_action_pressed("backward"):
-		if !is_rotating && !is_moving:
-			# check if facing front
-			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized():
-				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, 4)).origin))
-				if !ray_cast_res.has("position"):
-					is_moving = true
-					delta_sum = 0
-					target_pos = transform.translated(Vector3(0, 0, 4))
-			# check if facing back
-			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized():
-				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, -4)).origin))
-				if !ray_cast_res.has("position"):
-					is_moving = true
-					delta_sum = 0
-					target_pos = transform.translated(Vector3(0, 0, -4))
+		if !is_rotating && !is_moving && !ray2.is_colliding():
+			is_moving = true
+			delta_sum = 0
+			var player_quat = Quaternion(transform.basis)
+			target_pos = transform.translated(ray2.target_position.rotated(player_quat.get_axis().normalized(), player_quat.get_angle()))
+	
 		
 	elif Input.is_action_pressed("left"):
 		if !is_rotating && !is_moving:

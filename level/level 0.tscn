@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjm4y8cxl66g6"]
+
+[ext_resource type="Script" path="res://scripts/level_0.gd" id="1_0lw24"]
+[ext_resource type="MeshLibrary" uid="uid://d3loohkclossf" path="res://meshlib/meshlib.tres" id="1_ykuu8"]
+[ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_h2dre"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_56j10"]
+
+[node name="Level0" type="Node3D"]
+script = ExtResource("1_0lw24")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_ykuu8")
+cell_size = Vector3(4, 4, 4)
+data = {
+"cells": PackedInt32Array(65534, 65534, 0, 65534, 65533, 0, 65534, 65532, 0, 65534, 65531, 0, 65534, 65535, 5, 65534, 65530, 655365)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_h2dre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11117, 3.10423, -5.85162)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6, 4, -22)
+shape = SubResource("BoxShape3D_56j10")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
