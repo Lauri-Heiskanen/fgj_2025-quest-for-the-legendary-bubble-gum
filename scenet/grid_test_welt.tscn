@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwg0b1vgtc6fm"]
+[gd_scene load_steps=8 format=3 uid="uid://cwg0b1vgtc6fm"]
 
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="1_8iciv"]
+[ext_resource type="Script" path="res://scripts/grid_test_welt.gd" id="1_78bor"]
 [ext_resource type="MeshLibrary" uid="uid://d3loohkclossf" path="res://meshlib/meshlib.tres" id="1_ean6f"]
 [ext_resource type="PackedScene" uid="uid://cv6up7cv2qqg8" path="res://scenet/player.tscn" id="2_rm1hk"]
 
@@ -18,6 +19,7 @@ fog_enabled = true
 fog_light_color = Color(0.255062, 0.279576, 0.318112, 1)
 
 [node name="GridTestWelt" type="Node3D"]
+script = ExtResource("1_78bor")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_ean6f")
@@ -34,12 +36,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.9096, 0)
 
 [node name="Btn1" parent="." instance=ExtResource("1_8iciv")]
 transform = Transform3D(0.0504884, 0, -0.998725, 0, 1, 0, 0.998725, 0, 0.0504884, 3.68199, 3.32134, -2.43374)
-button_action = "Button 1"
+is_item = true
+item = "wrench"
 
 [node name="Btn2" parent="." instance=ExtResource("1_8iciv")]
 transform = Transform3D(0.0504884, 0, -0.998725, 0, 1, 0, 0.998725, 0, 0.0504884, 3.75785, 3.12683, -0.903617)
-button_action = "Button 2"
 toggle = true
 
 [node name="Player" parent="." instance=ExtResource("2_rm1hk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.7, -2)
+
+[connection signal="send_item" from="Btn1" to="." method="_receive_item"]
+[connection signal="send_button_state" from="Btn2" to="." method="_receive_state"]
