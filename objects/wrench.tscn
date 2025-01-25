@@ -1,10 +1,25 @@
 [gd_scene load_steps=7 format=3 uid="uid://bcxq2dtpk6q72"]
 
-[ext_resource type="Script" path="res://scripts/wrench.gd" id="1_lsnhn"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_aj8dv"]
 [ext_resource type="PackedScene" uid="uid://cmd0qqwfiixwx" path="res://3dModels/wrench.glb" id="2_pdos4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qatdd"]
 size = Vector3(1, 2, 0.3)
+
+[sub_resource type="Animation" id="Animation_cxu0y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_mlyui"]
 resource_name = "rotation"
@@ -23,21 +38,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_cxu0y"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_28ba5"]
 _data = {
 "RESET": SubResource("Animation_cxu0y"),
@@ -45,7 +45,8 @@ _data = {
 }
 
 [node name="Wrench" type="StaticBody3D"]
-script = ExtResource("1_lsnhn")
+script = ExtResource("1_aj8dv")
+item = "wrench"
 
 [node name="model" parent="." instance=ExtResource("2_pdos4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325816, -1.04077, 0)
