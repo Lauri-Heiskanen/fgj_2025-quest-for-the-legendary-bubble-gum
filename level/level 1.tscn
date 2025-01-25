@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpapb465pptdo"]
+
+[ext_resource type="MeshLibrary" uid="uid://d3loohkclossf" path="res://meshlib/meshlib.tres" id="1_828xn"]
+[ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_rlmrw"]
+[ext_resource type="PackedScene" uid="uid://c7lxmnh707oxt" path="res://3dModels/Televisio.glb" id="3_jybxe"]
+[ext_resource type="PackedScene" uid="uid://cqgxsesp117y4" path="res://3dModels/Kaappi.glb" id="4_7kn4m"]
+
+[node name="Level1" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_828xn")
+data = {
+"cells": PackedInt32Array(0, 0, 655365, 0, 3, 655360, 0, 5, 655360, 0, 7, 655360, 0, 9, 655360, 0, 11, 655362, 0, 14, 5)
+}
+
+[node name="Player" parent="." instance=ExtResource("2_rlmrw")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 2, 7)
+
+[node name="Televisio" parent="." instance=ExtResource("3_jybxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 23)
+
+[node name="Kaappi" parent="." instance=ExtResource("4_7kn4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 23)
