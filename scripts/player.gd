@@ -5,6 +5,9 @@ signal items_changed(index: int, new_item)
 const STEP = 20.0
 const JUMP_VELOCITY = 4.5
 
+@export var time_until_demise : int = 100
+@onready var airsupply : TextureProgressBar = $PlayerUI/AirSupplyBar
+@onready var death_timer : Timer = $Time_Until_Demise
 @onready var head : MeshInstance3D = $Head
 @onready var cam_first : Camera3D = $Head/First
 @onready var ray : RayCast3D = $Head/First/RayCast3D
@@ -20,22 +23,19 @@ var delta_sum: float = 0
 var target_rot: Quaternion = Quaternion(transform.basis)
 var target_pos: Transform3D = transform
 
-var motion : int = 0
-var turn : int = 0
-
-var _mouse_motion : Vector2
+var step 
 
 func _ready() -> void:
 	# Player cam as main
 	cam_first.make_current()
+	death_timer.wait_time = time_until_demise
+	airsupply.value = time_until_demise
+	death_timer.start()
 
+func _process(delta: float) -> void:
+	airsupply.value = death_timer.time_left
 
 func _physics_process(delta: float) -> void:
-	
-	_mouse_motion.y = clamp(_mouse_motion.y, -1550, 1550)
-	ray.transform.basis = Basis(Vector3(0, _mouse_motion.x * -0.001, 0), Vector3.UP, Vector3.FORWARD)
-	ray.transform.basis = Basis(Vector3(_mouse_motion.y * -0.001, 0, 0), Vector3.UP, Vector3.FORWARD)
-	
 	if Input.is_action_pressed("forward"):
 		if !is_rotating && !is_moving:
 			# check if facing front
@@ -122,11 +122,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _input(event):
-	# Capture and free mouse
-	if event is InputEventMouseMotion:
-		_mouse_motion += event.relative
-
 func add_item(item: String):
 	var i : int = 0
 	while i < 4:
@@ -150,3 +145,9 @@ func has_item(item: String):
 		if n == item:
 			return true
 	return false
+
+
+func _on_time_until_demise_timeout() -> void:
+	
+	#queue_free()
+	pass # Replace with function body.
