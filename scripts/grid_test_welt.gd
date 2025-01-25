@@ -13,7 +13,9 @@ func _process(delta: float) -> void:
 
 func _receive_item(item) -> void:
 	print("Received item:", item)
+	player.add_item(item)
 
 
 func _receive_state(id: int, state: bool) -> void:
 	print("State from: ", id, " : ", state)
+	
