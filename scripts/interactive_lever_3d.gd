@@ -22,13 +22,11 @@ func _on_Button3D_input_event(_camera, event, _position, _normal, _shape_idx):
 		
 		if event.pressed:
 			control_btn.toggle_mode = !control_btn.toggle_mode
-			print(control_btn.toggle_mode, !control_btn.toggle_mode)
 			control_btn.set_pressed(control_btn.toggle_mode)
 			control_btn.emit_signal("pressed")
 			send_lever_stateChange.emit(id, control_btn.toggle_mode)
 
 func _on_Button_pressed():
-	print("hehei")
 	if toggle_state:
 		animPlayer.play_backwards("lever_action")
 		toggle_state = !toggle_state
