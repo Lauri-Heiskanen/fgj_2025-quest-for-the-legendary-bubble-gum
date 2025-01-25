@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://1ohsnw7del1s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
-[ext_resource type="PackedScene" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
+[ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xby0o"]
 size = Vector3(0.5, 1, 0.5)
@@ -32,17 +32,16 @@ fov = 85.0
 [node name="RayCast3D" type="RayCast3D" parent="Head/First"]
 target_position = Vector3(0, 0, -4)
 
-[node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
-mouse_filter = 1
+[node name="RayCast3D2" type="RayCast3D" parent="Head/First"]
+target_position = Vector3(0, 0, 4)
 
-[node name="CenterContainer" parent="PlayerUI" index="0"]
-visible = false
+[node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
 omni_range = 4.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
 omni_range = 4.0
 
