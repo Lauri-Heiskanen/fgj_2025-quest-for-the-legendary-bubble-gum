@@ -16,6 +16,10 @@ func levelUP():
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-
 	if body == $Player:
 		levelUP()
+
+
+func _on_interactive_lever_3d_send_lever_state_change(id: int, state: bool) -> void:
+	if (id == 0 and state):
+		$Door.openDoor()

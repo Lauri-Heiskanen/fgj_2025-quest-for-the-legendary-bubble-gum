@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://btv6ihg5kw706"]
+[gd_scene load_steps=8 format=3 uid="uid://btv6ihg5kw706"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_posds"]
 [ext_resource type="Script" path="res://scripts/level_0.gd" id="1_yj7y7"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_w0pq6"]
 [ext_resource type="PackedScene" uid="uid://bseox1t7ydvmo" path="res://objects/door.tscn" id="4_ekius"]
+[ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_dwijl"]
+[ext_resource type="PackedScene" uid="uid://bd06t4dqluxgo" path="res://objects/DoorWay.tscn" id="6_v8n54"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe7he"]
 
@@ -30,4 +32,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90615, 2.07858, 29.9768)
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6, 4, 38.1007)
 shape = SubResource("BoxShape3D_qe7he")
 
+[node name="interactive_lever_3d" parent="." instance=ExtResource("5_dwijl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.9505, 3.71678, 25.987)
+
+[node name="DoorWay" parent="." instance=ExtResource("6_v8n54")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 33)
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="send_lever_stateChange" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
