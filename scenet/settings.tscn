@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5dgy2qfb3amt"]
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_hpfgh"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hpfgh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262537, 0.521981, 0.72178, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = 100.0
+offset_right = 35.0
+offset_bottom = 126.0
+grow_horizontal = 2
+text = "Settings"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 70.0
+offset_bottom = 56.0
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
