@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwg0b1vgtc6fm"]
+
+[ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="1_8iciv"]
+[ext_resource type="MeshLibrary" uid="uid://d3loohkclossf" path="res://meshlib/meshlib.tres" id="1_ean6f"]
+[ext_resource type="PackedScene" uid="uid://cv6up7cv2qqg8" path="res://scenet/player.tscn" id="2_rm1hk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dpetw"]
+sky_top_color = Color(0.19966, 0.244789, 0.30755, 1)
+sky_horizon_color = Color(0.332946, 0.341163, 0.354134, 1)
+
+[sub_resource type="Sky" id="Sky_y3n1b"]
+sky_material = SubResource("ProceduralSkyMaterial_dpetw")
+
+[sub_resource type="Environment" id="Environment_4sv8q"]
+background_mode = 2
+sky = SubResource("Sky_y3n1b")
+fog_enabled = true
+fog_light_color = Color(0.255062, 0.279576, 0.318112, 1)
+
+[node name="GridTestWelt" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_ean6f")
+cell_size = Vector3(4, 4, 4)
+data = {
+"cells": PackedInt32Array(0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0)
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4sv8q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.9096, 0)
+
+[node name="Btn1" parent="." instance=ExtResource("1_8iciv")]
+transform = Transform3D(0.0504884, 0, -0.998725, 0, 1, 0, 0.998725, 0, 0.0504884, 3.68199, 3.32134, -2.43374)
+button_action = "Button 1"
+
+[node name="Btn2" parent="." instance=ExtResource("1_8iciv")]
+transform = Transform3D(0.0504884, 0, -0.998725, 0, 1, 0, 0.998725, 0, 0.0504884, 3.75785, 3.12683, -0.903617)
+button_action = "Button 2"
+toggle = true
+
+[node name="Player" parent="." instance=ExtResource("2_rm1hk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.7, -2)
