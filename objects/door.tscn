@@ -1,9 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://bseox1t7ydvmo"]
+[gd_scene load_steps=6 format=3 uid="uid://bseox1t7ydvmo"]
 
 [ext_resource type="PackedScene" uid="uid://4mh3c3gvje3" path="res://3dModels/Door.glb" id="1_8wmns"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qjjee"]
 points = PackedVector3Array(-0.0913406, 2.21982, 0.558199, 0.108638, 2.23, 0.502357, -0.0913406, 2.21982, -0.558199, -0.1999, 1.34025, -0.343247, -0.1999, 1.33848, -0.323686, -0.1999, 1.33273, -0.30489, -0.1999, 1.32343, -0.287623, -0.1999, 1.31105, -0.272543, -0.1999, 1.29578, -0.260085, -0.1999, 1.27853, -0.250796, -0.1999, 1.25972, -0.245114, -0.1999, 1.24025, -0.243256, -0.0913406, -0.03, 0.558199, 0.199861, 1.24025, -0.243256, 0.199861, 1.25972, -0.245114, 0.199861, 1.27853, -0.250796, 0.199861, 1.29578, -0.260085, 0.199861, 1.31105, -0.272543, 0.199861, 1.32343, -0.287623, 0.199861, 1.33273, -0.30489, 0.199861, 1.33848, -0.323686, 0.199861, 1.34025, -0.343247, 0.108638, 2.23, -0.502467, 0.108638, -0.020045, 0.502357, -0.1999, 1.24025, -0.443237, -0.1999, 1.25972, -0.44127, -0.1999, 1.27853, -0.435588, -0.1999, 1.29578, -0.426408, -0.1999, 1.31105, -0.41395, -0.1999, 1.32343, -0.398761, -0.1999, 1.33273, -0.381494, -0.1999, 1.33848, -0.362698, -0.0913406, -0.03, -0.558199, -0.1999, 1.22079, -0.245114, -0.1999, 1.20198, -0.250796, -0.1999, 1.18473, -0.260085, -0.1999, 1.16968, -0.272543, -0.1999, 1.15708, -0.287623, -0.1999, 1.14801, -0.30489, -0.1999, 1.14225, -0.323686, -0.1999, 1.14026, -0.343247, 0.199861, 1.22079, -0.245114, 0.199861, 1.33848, -0.362698, 0.199861, 1.33273, -0.381494, 0.199861, 1.32343, -0.398761, 0.199861, 1.31105, -0.41395, 0.199861, 1.29578, -0.426408, 0.199861, 1.27853, -0.435588, 0.199861, 1.25972, -0.44127, 0.199861, 1.24025, -0.443237, 0.108638, -0.020045, -0.502467, 0.199861, 1.14026, -0.343247, 0.199861, 1.14225, -0.323686, 0.199861, 1.14801, -0.30489, 0.199861, 1.15708, -0.287623, 0.199861, 1.16968, -0.272543, 0.199861, 1.18473, -0.260085, 0.199861, 1.20198, -0.250796, -0.1999, 1.22079, -0.44127, -0.1999, 1.14225, -0.362698, -0.1999, 1.14801, -0.381494, -0.1999, 1.15708, -0.398761, -0.1999, 1.16968, -0.41395, -0.1999, 1.18473, -0.426408, -0.1999, 1.20198, -0.435588, 0.199861, 1.22079, -0.44127, 0.199861, 1.20198, -0.435588, 0.199861, 1.18473, -0.426408, 0.199861, 1.16968, -0.41395, 0.199861, 1.15708, -0.398761, 0.199861, 1.14801, -0.381494, 0.199861, 1.14225, -0.362698)
+
+[sub_resource type="Animation" id="Animation_e56co"]
+resource_name = "openDoor"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, -0.707107, 0, 0.707107)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0.5, 0, 0.5)
+
+[sub_resource type="Animation" id="Animation_e1mii"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kjcgw"]
+_data = {
+"RESET": SubResource("Animation_e1mii"),
+"openDoor": SubResource("Animation_e56co")
+}
 
 [node name="Door" type="Node3D"]
 
@@ -13,5 +46,10 @@ points = PackedVector3Array(-0.0913406, 2.21982, 0.558199, 0.108638, 2.23, 0.502
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door/baked_003/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_qjjee")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kjcgw")
+}
 
 [editable path="Door"]
