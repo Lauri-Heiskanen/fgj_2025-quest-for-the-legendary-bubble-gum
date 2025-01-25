@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://btr28agjp3rui"]
+[gd_scene load_steps=3 format=3 uid="uid://btr28agjp3rui"]
 
 [ext_resource type="Script" path="res://scripts/player_ui.gd" id="1_wdkpu"]
+[ext_resource type="Texture2D" uid="uid://42p1tgtir6at" path="res://uiTextures/hotbar_background.png" id="2_3mwjq"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -29,7 +30,7 @@ width = 2.0
 points = PackedVector2Array(-40, 0, 40, 0)
 width = 2.0
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="hotbar_container" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -40,9 +41,40 @@ grow_vertical = 0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_bottom = 30
 
-[node name="Health" type="Label" parent="MarginContainer"]
+[node name="hotbar" type="HBoxContainer" parent="hotbar_container"]
 layout_mode = 2
-text = "Seppo"
+
+[node name="slot0" type="PanelContainer" parent="hotbar_container/hotbar"]
+layout_mode = 2
+
+[node name="item_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot0"]
+
+[node name="background_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot0"]
+texture = ExtResource("2_3mwjq")
+
+[node name="slot1" type="PanelContainer" parent="hotbar_container/hotbar"]
+layout_mode = 2
+
+[node name="item_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot1"]
+
+[node name="background_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot1"]
+texture = ExtResource("2_3mwjq")
+
+[node name="slot2" type="PanelContainer" parent="hotbar_container/hotbar"]
+layout_mode = 2
+
+[node name="item_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot2"]
+
+[node name="background_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot2"]
+texture = ExtResource("2_3mwjq")
+
+[node name="slot3" type="PanelContainer" parent="hotbar_container/hotbar"]
+layout_mode = 2
+
+[node name="item_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot3"]
+
+[node name="background_texture" type="Sprite2D" parent="hotbar_container/hotbar/slot3"]
+texture = ExtResource("2_3mwjq")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 0
