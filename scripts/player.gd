@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal items_changed(index: int, new_item)
 
 const STEP = 20.0
 const JUMP_VELOCITY = 4.5
@@ -7,6 +8,10 @@ const JUMP_VELOCITY = 4.5
 @onready var head : MeshInstance3D = $Head
 @onready var cam_first : Camera3D = $Head/First
 @onready var ray : RayCast3D = $Head/First/RayCast3D
+
+@onready var hotbar : HBoxContainer = $PlayerUI/hotbar_container/hotbar
+var player_items : Array = [null, null, null, null] # create array to store item information
+var player_active_slot : int = 0
 
 var is_moving: bool = false
 var is_rotating: bool = false
@@ -69,6 +74,15 @@ func _physics_process(delta: float) -> void:
 			delta_sum = 0
 			target_rot = (Quaternion(Vector3(0, -1, 0), deg_to_rad(90)).normalized() * Quaternion(transform.basis)).normalized()
 	
+	if Input.is_action_just_pressed("hotbar1"):
+		player_active_slot = 0
+	elif Input.is_action_just_pressed("hotbar2"):
+		player_active_slot = 1
+	elif Input.is_action_just_pressed("hotbar3"):
+		player_active_slot = 2
+	elif Input.is_action_just_pressed("hotbar4"):
+		player_active_slot = 3
+	
 	if is_rotating:
 		delta_sum += delta * 2 # rotation speed multiplier
 		if delta_sum > 1:
@@ -86,24 +100,33 @@ func _physics_process(delta: float) -> void:
 			transform.basis = Basis(Quaternion(transform.basis).slerp(target_rot, delta_sum))
 			
 	if is_moving:
-		print(delta_sum)
 		if delta_sum == 1:
 			transform = target_pos
 			is_moving = false
 		elif delta_sum < 1:
 			transform = transform.interpolate_with(target_pos, delta_sum)
 
-
 	move_and_slide()
-	
-#
+
 func _input(event):
 	# Capture and free mouse
 	if event is InputEventMouseMotion:
 		_mouse_motion += event.relative
-		#
-	#if event is InputEventMouseButton:
-		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	#if event.is_action_pressed("ui_cancel"):
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#
+
+func add_item_place_holder(item: String):
+	var i : int = 0
+	while i < 4:
+		if player_items[i] == null:
+			player_items[i] = item
+			items_changed.emit(i, item)
+			break
+		i += 1
+
+func remove_item_place_holder(item: String):
+	var i : int = 0
+	while i < 4:
+		if player_items[i] == item:
+			player_items[i] = null
+			items_changed.emit(i, null)
+			break
+		i += 1
