@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdji37883ybk8"]
 
-[ext_resource type="PackedScene" uid="uid://b1no7kn1ubdn" path="res://3dModels/hallway.glb" id="1_tsi36"]
+[ext_resource type="PackedScene" uid="uid://bpj7xdlfusqih" path="res://3dModels/hallway.glb" id="1_tsi36"]
 
 [node name="BasicHallway" type="Node3D"]
 

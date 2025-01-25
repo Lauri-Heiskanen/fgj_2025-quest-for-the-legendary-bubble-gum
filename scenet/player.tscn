@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://1ohsnw7del1s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
-[ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
+[ext_resource type="PackedScene" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xby0o"]
 size = Vector3(0.5, 1, 0.5)
@@ -36,14 +36,6 @@ target_position = Vector3(0, 0, -4)
 target_position = Vector3(0, 0, 4)
 
 [node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
-omni_range = 4.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
-omni_range = 4.0
 
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 
