@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwg0b1vgtc6fm"]
+[gd_scene load_steps=9 format=3 uid="uid://cwg0b1vgtc6fm"]
 
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="1_8iciv"]
 [ext_resource type="MeshLibrary" uid="uid://d3loohkclossf" path="res://meshlib/meshlib.tres" id="1_ean6f"]
 [ext_resource type="PackedScene" uid="uid://cv6up7cv2qqg8" path="res://scenet/player.tscn" id="2_rm1hk"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="4_i1mpc"]
+[ext_resource type="PackedScene" uid="uid://21y4jo33eqbn" path="res://scenet/interactive_valve_3d.tscn" id="5_hkmth"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dpetw"]
 sky_top_color = Color(0.19966, 0.244789, 0.30755, 1)
@@ -47,3 +48,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.7, -2)
 
 [node name="interactive_lever_3d" parent="." instance=ExtResource("4_i1mpc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.75195, 3.67832, -1.45592)
+
+[node name="interactive_valve_3d" parent="." instance=ExtResource("5_hkmth")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.70484, 4.46263, -2.27741)
