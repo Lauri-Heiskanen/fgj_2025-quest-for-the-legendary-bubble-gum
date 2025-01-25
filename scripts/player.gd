@@ -6,6 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 @onready var head : MeshInstance3D = $Head
 @onready var cam_first : Camera3D = $Head/First
+@onready var ray : RayCast3D = $Head/First/RayCast3D
 
 var is_moving: bool = false
 var is_rotating: bool = false
@@ -17,12 +18,18 @@ var target_pos: Transform3D = transform
 var motion : int = 0
 var turn : int = 0
 
+var _mouse_motion : Vector2
+
 func _ready() -> void:
 	# Player cam as main
 	cam_first.make_current()
 
 
 func _physics_process(delta: float) -> void:
+	
+	_mouse_motion.y = clamp(_mouse_motion.y, -1550, 1550)
+	ray.transform.basis = Basis(Vector3(0, _mouse_motion.x * -0.001, 0), Vector3.UP, Vector3.FORWARD)
+	ray.transform.basis = Basis(Vector3(_mouse_motion.y * -0.001, 0, 0), Vector3.UP, Vector3.FORWARD)
 	
 	if Input.is_action_pressed("forward"):
 		if !is_rotating && !is_moving:
@@ -88,11 +95,15 @@ func _physics_process(delta: float) -> void:
 
 
 	move_and_slide()
-
+	
+#
 func _input(event):
 	# Capture and free mouse
-	if event is InputEventMouseButton:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
+	if event is InputEventMouseMotion:
+		_mouse_motion += event.relative
+		#
+	#if event is InputEventMouseButton:
+		#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#if event.is_action_pressed("ui_cancel"):
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#

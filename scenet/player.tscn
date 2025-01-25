@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xby0o"]
-size = Vector3(1, 2, 1)
+size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h473f"]
-size = Vector3(1, 2, 1)
+size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bqdjl"]
-size = Vector3(0.8, 0.8, 0.8)
+size = Vector3(0.4, 0.4, 0.4)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dbqef")
@@ -22,10 +22,20 @@ mesh = SubResource("BoxMesh_xby0o")
 shape = SubResource("BoxShape3D_h473f")
 
 [node name="Head" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45604, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.848992, 0)
 mesh = SubResource("BoxMesh_bqdjl")
 
 [node name="First" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13659, -0.441063)
+fov = 85.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/First"]
+target_position = Vector3(0, 0, -4)
 
 [node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
+visible = false
+
+[node name="CenterContainer" parent="PlayerUI" index="0"]
+visible = false
+
+[editable path="PlayerUI"]

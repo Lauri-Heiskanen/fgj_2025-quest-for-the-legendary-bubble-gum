@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5qxj4ol5ddn2"]
+
+[ext_resource type="Script" path="res://scripts/interactive_button_3d.gd" id="1_112da"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ax2i"]
+size = Vector3(0.4, 0.4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h8hni"]
+size = Vector3(0.4, 0.4, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qy6t6"]
+albedo_color = Color(0.336608, 0.336608, 0.336608, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0p5fu"]
+material = SubResource("StandardMaterial3D_qy6t6")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_yyijv"]
+resource_name = "press_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/ObjBtn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.138332), Vector3(0, 0, 0.06), Vector3(0, 0, 0.138332)]
+}
+
+[sub_resource type="Animation" id="Animation_7ucc0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/ObjBtn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.138332)]
+}
+
+[sub_resource type="Animation" id="Animation_di6k8"]
+resource_name = "toggle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/ObjBtn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.138332), Vector3(0, 0, 0.07)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2easy"]
+_data = {
+"RESET": SubResource("Animation_7ucc0"),
+"press_down": SubResource("Animation_yyijv"),
+"toggle": SubResource("Animation_di6k8")
+}
+
+[node name="Interactive_Button3D" type="StaticBody3D"]
+script = ExtResource("1_112da")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0ax2i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h8hni")
+
+[node name="ObjBtn" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.138332)
+mesh = SubResource("BoxMesh_0p5fu")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MeshInstance3D/ObjBtn"]
+visible = false
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D/ObjBtn/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Button" type="Button" parent="MeshInstance3D/ObjBtn/SubViewportContainer/SubViewport"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2easy")
+}
