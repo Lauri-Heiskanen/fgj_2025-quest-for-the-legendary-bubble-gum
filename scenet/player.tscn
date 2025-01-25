@@ -42,6 +42,10 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
 omni_range = 4.0
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
+omni_range = 4.0
+
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 
 [editable path="PlayerUI"]
