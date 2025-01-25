@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqncl0i0y1rfv"]
+
+[ext_resource type="PackedScene" uid="uid://cwgntxg44ectd" path="res://3dModels/wall.glb" id="1_2iew0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_u2uil"]
+points = PackedVector3Array(2, 4, 0.1, 2, 4, -0.1, -2, 4, 0.1, 2, 0, 0.1, 2, 0, -0.1, -2, 4, -0.1, -2, 0, 0.1, -2, 0, -0.1)
+
+[node name="Wall" type="Node3D"]
+
+[node name="wall" parent="." instance=ExtResource("1_2iew0")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall/Cube_003" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/Cube_003/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_u2uil")
+
+[editable path="wall"]
