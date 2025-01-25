@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://btv6ihg5kw706"]
+[gd_scene load_steps=6 format=3 uid="uid://btv6ihg5kw706"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_posds"]
+[ext_resource type="Script" path="res://scripts/level_0.gd" id="1_yj7y7"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_w0pq6"]
+[ext_resource type="PackedScene" uid="uid://bseox1t7ydvmo" path="res://objects/door.tscn" id="4_ekius"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qe7he"]
 
 [node name="Level0" type="Node3D"]
+script = ExtResource("1_yj7y7")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_posds")
@@ -14,4 +19,15 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_w0pq6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, 10)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 3, 10)
+
+[node name="Door" parent="." instance=ExtResource("4_ekius")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90615, 2.07858, 29.9768)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6, 4, 38.1007)
+shape = SubResource("BoxShape3D_qe7he")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
