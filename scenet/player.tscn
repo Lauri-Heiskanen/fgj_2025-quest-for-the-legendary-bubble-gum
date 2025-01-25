@@ -33,6 +33,10 @@ fov = 85.0
 target_position = Vector3(0, 0, -4)
 
 [node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
+mouse_filter = 1
+
+[node name="CenterContainer" parent="PlayerUI" index="0"]
+visible = false
 
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 

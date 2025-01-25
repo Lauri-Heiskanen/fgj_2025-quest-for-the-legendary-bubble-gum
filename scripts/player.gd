@@ -40,27 +40,41 @@ func _physics_process(delta: float) -> void:
 		if !is_rotating && !is_moving:
 			# check if facing front
 			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized():
-				is_moving = true
-				delta_sum = 0
-				target_pos = transform.translated(Vector3(0, 0, -4))
+				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, -4)).origin))
+				print(ray_cast_res)
+				if !ray_cast_res.has("position"):
+					is_moving = true
+					delta_sum = 0
+					target_pos = transform.translated(Vector3(0, 0, -4))
 			# check if facing back
 			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized():
-				is_moving = true
-				delta_sum = 0
-				target_pos = transform.translated(Vector3(0, 0, 4))
+				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, 4)).origin))
+				print(ray_cast_res)
+				if !ray_cast_res.has("position"):
+					is_moving = true
+					delta_sum = 0
+					target_pos = transform.translated(Vector3(0, 0, 4))
 	
 	elif Input.is_action_pressed("backward"):
 		if !is_rotating && !is_moving:
 			# check if facing front
 			if Quaternion(transform.basis) == Quaternion(0, 0, 0, 1).normalized():
-				is_moving = true
-				delta_sum = 0
-				target_pos = transform.translated(Vector3(0, 0, 4))
+				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, 4)).origin))
+				if !ray_cast_res.has("position"):
+					is_moving = true
+					delta_sum = 0
+					target_pos = transform.translated(Vector3(0, 0, 4))
 			# check if facing back
 			elif Quaternion(transform.basis) == Quaternion(0, 1, 0, 0).normalized():
-				is_moving = true
-				delta_sum = 0
-				target_pos = transform.translated(Vector3(0, 0, -4))
+				var space_state : PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+				var ray_cast_res = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(transform.origin, transform.translated(Vector3(0, 0, -4)).origin))
+				if !ray_cast_res.has("position"):
+					is_moving = true
+					delta_sum = 0
+					target_pos = transform.translated(Vector3(0, 0, -4))
 		
 	elif Input.is_action_pressed("left"):
 		if !is_rotating && !is_moving:
@@ -113,7 +127,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		_mouse_motion += event.relative
 
-func add_item_place_holder(item: String):
+func add_item(item: String):
 	var i : int = 0
 	while i < 4:
 		if player_items[i] == null:
@@ -122,7 +136,7 @@ func add_item_place_holder(item: String):
 			break
 		i += 1
 
-func remove_item_place_holder(item: String):
+func remove_item(item: String):
 	var i : int = 0
 	while i < 4:
 		if player_items[i] == item:
@@ -130,3 +144,9 @@ func remove_item_place_holder(item: String):
 			items_changed.emit(i, null)
 			break
 		i += 1
+
+func has_item(item: String):
+	for n in player_items:
+		if n == item:
+			return true
+	return false
