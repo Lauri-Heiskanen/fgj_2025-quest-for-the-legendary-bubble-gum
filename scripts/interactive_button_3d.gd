@@ -31,6 +31,7 @@ func _on_Button3D_input_event(_camera, event, _position, _normal, _shape_idx):
 			control_btn.set_pressed(false)
 
 func _on_Button_pressed():
+	print("Button press")
 	if toggle:
 		if toggle_state:
 			animPlayer.play_backwards("toggle")

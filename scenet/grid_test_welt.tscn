@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwg0b1vgtc6fm"]
+[gd_scene load_steps=10 format=3 uid="uid://cwg0b1vgtc6fm"]
 
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="1_8iciv"]
 [ext_resource type="Script" path="res://scripts/grid_test_welt.gd" id="1_78bor"]
@@ -48,10 +48,11 @@ toggle = true
 [node name="Player" parent="." instance=ExtResource("2_rm1hk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.7, -2)
 
-[connection signal="send_item" from="Btn1" to="." method="_receive_item"]
-[connection signal="send_button_state" from="Btn2" to="." method="_receive_state"]
 [node name="interactive_lever_3d" parent="." instance=ExtResource("4_i1mpc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.75195, 3.67832, -1.45592)
 
 [node name="interactive_valve_3d" parent="." instance=ExtResource("5_hkmth")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.70484, 4.46263, -2.27741)
+
+[connection signal="send_item" from="Btn1" to="." method="_receive_item"]
+[connection signal="send_button_state" from="Btn2" to="." method="_receive_state"]
