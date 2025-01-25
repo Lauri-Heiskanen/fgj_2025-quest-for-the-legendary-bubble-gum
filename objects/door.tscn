@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bseox1t7ydvmo"]
+[gd_scene load_steps=7 format=3 uid="uid://bseox1t7ydvmo"]
 
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_8st7d"]
 [ext_resource type="PackedScene" uid="uid://4mh3c3gvje3" path="res://3dModels/Door.glb" id="1_8wmns"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qjjee"]
@@ -39,6 +40,7 @@ _data = {
 }
 
 [node name="Door" type="Node3D"]
+script = ExtResource("1_8st7d")
 
 [node name="Door" parent="." instance=ExtResource("1_8wmns")]
 
@@ -51,5 +53,7 @@ shape = SubResource("ConvexPolygonShape3D_qjjee")
 libraries = {
 "": SubResource("AnimationLibrary_kjcgw")
 }
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="Door"]
