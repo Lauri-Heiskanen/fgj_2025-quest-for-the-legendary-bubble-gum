@@ -5,7 +5,6 @@
 [ext_resource type="MeshLibrary" uid="uid://d3loohkclossf" path="res://meshlib/meshlib.tres" id="1_ean6f"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_rm1hk"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="4_i1mpc"]
-[ext_resource type="PackedScene" uid="uid://21y4jo33eqbn" path="res://scenet/interactive_valve_3d.tscn" id="5_hkmth"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dpetw"]
 sky_top_color = Color(0.19966, 0.244789, 0.30755, 1)

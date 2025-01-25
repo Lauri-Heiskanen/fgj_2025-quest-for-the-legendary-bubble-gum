@@ -10,8 +10,9 @@
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_828xn")
 data = {
-"cells": PackedInt32Array(0, 0, 655365, 0, 3, 655360, 0, 5, 655360, 0, 7, 655360, 0, 9, 655360, 0, 11, 655362, 0, 14, 5)
+"cells": PackedInt32Array(0, 3, 655360, 0, 5, 655360, 0, 7, 655360, 0, 9, 655360, 0, 11, 655362, 0, 14, 5, 0, 0, 655365)
 }
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_rlmrw")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 2, 7)

@@ -13,8 +13,9 @@ script = ExtResource("1_0lw24")
 mesh_library = ExtResource("1_ykuu8")
 cell_size = Vector3(4, 4, 4)
 data = {
-"cells": PackedInt32Array(65534, 65535, 5, 65534, 65534, 0, 65534, 65533, 0, 65534, 65532, 0, 65534, 65531, 0, 65534, 65530, 655365)
+"cells": PackedInt32Array(65534, 65534, 0, 65534, 65533, 0, 65534, 65532, 0, 65534, 65531, 0, 65534, 65535, 5, 65534, 65530, 655365)
 }
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_h2dre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11117, 3.10423, -5.85162)
