@@ -113,7 +113,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		_mouse_motion += event.relative
 
-func add_item_place_holder(item: String):
+func add_item(item: String):
 	var i : int = 0
 	while i < 4:
 		if player_items[i] == null:
@@ -122,7 +122,7 @@ func add_item_place_holder(item: String):
 			break
 		i += 1
 
-func remove_item_place_holder(item: String):
+func remove_item(item: String):
 	var i : int = 0
 	while i < 4:
 		if player_items[i] == item:
@@ -130,3 +130,9 @@ func remove_item_place_holder(item: String):
 			items_changed.emit(i, null)
 			break
 		i += 1
+
+func has_item(item: String):
+	for n in player_items:
+		if n == item:
+			return true
+	return false
