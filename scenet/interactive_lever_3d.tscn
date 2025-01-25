@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://cs1p7ktfubaqa"]
+
+[ext_resource type="Script" path="res://scenet/interactive_lever_3d.gd" id="1_3bjww"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ix20a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n300k"]
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l5j3a"]
+material = SubResource("StandardMaterial3D_n300k")
+size = Vector3(0.4, 0.6, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oajp5"]
+albedo_color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4bf7o"]
+material = SubResource("StandardMaterial3D_oajp5")
+size = Vector3(0.15, 0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6ni4"]
+albedo_color = Color(0.477063, 0.296264, 0.136154, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m4hho"]
+material = SubResource("StandardMaterial3D_s6ni4")
+size = Vector3(0.1, 0.1, 0.35)
+
+[sub_resource type="Animation" id="Animation_4uxd5"]
+resource_name = "lever_action"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.694152, 0, 0), Vector3(0.694641, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pixui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/Pivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.694152, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rm6gu"]
+_data = {
+"RESET": SubResource("Animation_pixui"),
+"lever_action": SubResource("Animation_4uxd5")
+}
+
+[node name="interactive_lever_3d" type="StaticBody3D"]
+script = ExtResource("1_3bjww")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ix20a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_l5j3a")
+
+[node name="Pivot" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.768596, 0.639734, 0, -0.639734, 0.768596, 0, 0, 0.06)
+mesh = SubResource("BoxMesh_4bf7o")
+
+[node name="Lever" type="MeshInstance3D" parent="MeshInstance3D/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.31323e-10, 0.215747)
+mesh = SubResource("BoxMesh_m4hho")
+skeleton = NodePath("../..")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MeshInstance3D/Pivot/Lever"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D/Pivot/Lever/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Button" type="Button" parent="MeshInstance3D/Pivot/Lever/SubViewportContainer/SubViewport"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rm6gu")
+}
