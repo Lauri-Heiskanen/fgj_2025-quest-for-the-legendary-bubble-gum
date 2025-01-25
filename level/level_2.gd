@@ -18,6 +18,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_interactive_lever_3d_send_lever_state_change(id: int, state: bool) -> void:
 	print(id)
 	print(state)
+	return
 	if (id == 0 and state):
 		$hatchW/AnimationPlayer.play("open")
 		$hatchP/AnimationPlayer.play_backwards("open")

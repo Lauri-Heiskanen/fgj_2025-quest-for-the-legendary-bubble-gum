@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://csigcn41x5gdt"]
+[gd_scene load_steps=7 format=3 uid="uid://csigcn41x5gdt"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_e1pvb"]
 [ext_resource type="Script" path="res://level/level_2.gd" id="1_vl04i"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bd06t4dqluxgo" path="res://objects/DoorWay.tscn" id="4_oud5k"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_7jxf0"]
 [ext_resource type="PackedScene" uid="uid://bcxq2dtpk6q72" path="res://objects/wrench.tscn" id="6_s4jbo"]
-[ext_resource type="PackedScene" uid="uid://cmi1idssn5b5d" path="res://objects/hatch.tscn" id="7_4et8r"]
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_vl04i")
@@ -29,9 +28,5 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.435,
 
 [node name="Wrench" parent="." instance=ExtResource("6_s4jbo")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.34027, 3.75867, -1.9829)
-
-[node name="hatchW" parent="." instance=ExtResource("7_4et8r")]
-
-[node name="hatchP" parent="." instance=ExtResource("7_4et8r")]
 
 [connection signal="send_lever_stateChange" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
