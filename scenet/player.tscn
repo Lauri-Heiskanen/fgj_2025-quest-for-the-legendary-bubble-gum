@@ -37,7 +37,7 @@ target_position = Vector3(0, 0, 4)
 
 [node name="PlayerUI" parent="." instance=ExtResource("2_3tbcn")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32878, 0)
 omni_range = 4.0
 

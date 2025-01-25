@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd06t4dqluxgo"]
+
+[ext_resource type="Script" path="res://scripts/door_way.gd" id="1_yw2p0"]
+[ext_resource type="PackedScene" uid="uid://bjc2v77imhsk1" path="res://3dModels/doorway.glb" id="2_p4ssv"]
+[ext_resource type="PackedScene" uid="uid://4mh3c3gvje3" path="res://3dModels/Door.glb" id="3_ynclb"]
+
+[sub_resource type="Animation" id="Animation_b7361"]
+resource_name = "openDoor"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.707107, 0, 0.707107, 1, 1, 0, 1, 0, 4.37114e-08)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Door")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.1, 0, 1, 1, -0.519477, 0.1, 0.530578)
+
+[sub_resource type="Animation" id="Animation_a6vp5"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.707107, 0, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8n26q"]
+_data = {
+"RESET": SubResource("Animation_a6vp5"),
+"openDoor": SubResource("Animation_b7361")
+}
+
+[node name="DoorWay" type="Node3D"]
+script = ExtResource("1_yw2p0")
+
+[node name="doorway" parent="." instance=ExtResource("2_p4ssv")]
+
+[node name="Door" parent="." instance=ExtResource("3_ynclb")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8n26q")
+}

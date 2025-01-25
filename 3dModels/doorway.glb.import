@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bpj7xdlfusqih"
-path="res://.godot/imported/hallway.glb-2bc9c787f173c2dfa2a324dd755a46d5.scn"
+uid="uid://bjc2v77imhsk1"
+path="res://.godot/imported/doorway.glb-6784720a646ec1dab1f3ec53799fbd44.scn"
 
 [deps]
 
-source_file="res://3dModels/hallway.glb"
-dest_files=["res://.godot/imported/hallway.glb-2bc9c787f173c2dfa2a324dd755a46d5.scn"]
+source_file="res://3dModels/doorway.glb"
+dest_files=["res://.godot/imported/doorway.glb-6784720a646ec1dab1f3ec53799fbd44.scn"]
 
 [params]
 
