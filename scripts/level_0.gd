@@ -24,3 +24,8 @@ func _on_interactive_lever_3d_send_lever_state_change(id: int, state: bool) -> v
 	if (id == 0 and state):
 		$Door.openDoor()
 		$DoorWay/Door.openDoor()
+
+
+func _on_interactive_button_3d_send_button_state(id: int, toggle_state: bool) -> void:
+	if (id == 1):
+		$Door.closeDoor()

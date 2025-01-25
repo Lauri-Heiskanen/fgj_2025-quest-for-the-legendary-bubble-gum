@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://btv6ihg5kw706"]
+[gd_scene load_steps=10 format=3 uid="uid://btv6ihg5kw706"]
 
-[ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_posds"]
+[ext_resource type="MeshLibrary" path="res://meshlib/meshLib2.tres" id="1_posds"]
 [ext_resource type="Script" path="res://scripts/level_0.gd" id="1_yj7y7"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_w0pq6"]
-[ext_resource type="PackedScene" uid="uid://bseox1t7ydvmo" path="res://objects/door.tscn" id="4_ekius"]
+[ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="4_ekius"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_dwijl"]
 [ext_resource type="PackedScene" uid="uid://bd06t4dqluxgo" path="res://objects/DoorWay.tscn" id="6_v8n54"]
+[ext_resource type="PackedScene" uid="uid://bqncl0i0y1rfv" path="res://objects/wall.tscn" id="7_g46e1"]
+[ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="9_b48wd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe7he"]
 
@@ -32,11 +34,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90615, 2.07858, 29.9768)
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6, 4, 38.1007)
 shape = SubResource("BoxShape3D_qe7he")
 
-[node name="interactive_lever_3d" parent="." instance=ExtResource("5_dwijl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.9505, 3.71678, 25.987)
-
 [node name="DoorWay" parent="." instance=ExtResource("6_v8n54")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 33)
 
+[node name="Wall" parent="." instance=ExtResource("7_g46e1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.99357, 1.77435, 28.3936)
+
+[node name="Wall" parent="Wall" instance=ExtResource("7_g46e1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.97453, -0.00311422, 1.82911)
+
+[node name="Wall" parent="Wall/Wall" instance=ExtResource("7_g46e1")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.99406, -0.00311422, -1.83609)
+
+[node name="Wall" parent="Wall/Wall/Wall" instance=ExtResource("7_g46e1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103651, 0.0168076, -4.08746)
+
+[node name="Wall2" parent="." instance=ExtResource("7_g46e1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.91666, 1.68657, 31.7735)
+
+[node name="Interactive_Button3D" parent="." instance=ExtResource("9_b48wd")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.7618, 1.86812, 30.0637)
+id = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5328, 5.31559, 30.0615)
+omni_range = 3.0
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.7195, 3.51807, 30.1278)
+text = "Press to find out "
+
+[node name="Lever" parent="." instance=ExtResource("5_dwijl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.9505, 3.81065, 25.9736)
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="send_lever_stateChange" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
+[connection signal="send_button_state" from="Interactive_Button3D" to="." method="_on_interactive_button_3d_send_button_state"]
+[connection signal="send_button_state" from="Lever" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
