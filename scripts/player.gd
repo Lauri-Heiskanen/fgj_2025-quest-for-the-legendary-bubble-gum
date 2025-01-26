@@ -156,4 +156,4 @@ func _on_time_until_demise_timeout() -> void:
 	die()
 
 func die() -> void:
-	get_tree().change_scene_to_file("res://scenet/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenet/deathScreen.tscn")

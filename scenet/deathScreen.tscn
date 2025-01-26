@@ -12,34 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4as1k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.6
-anchor_bottom = 0.603
-offset_right = -0.153687
-offset_bottom = -0.486938
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 2
-anchor_right = 0.6
-anchor_bottom = 0.598
-offset_right = -0.153687
-offset_bottom = -1076.49
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[b]Oh noes[b]
-
-You have died to:
-[color=red][i]{insert death here}[i][/color]
-
-Unfortunatly you are not able to chew the legendary bubblegum.
-
-Now the world is unchanged."
-fit_content = true
-
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -48,3 +20,38 @@ anchor_bottom = 0.6
 offset_right = -0.153687
 offset_bottom = -0.0864258
 color = Color(0.498039, 0.745098, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 138.0
+offset_top = 974.0
+offset_right = 205.0
+offset_bottom = 997.0
+text = "Not EPIC"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 613.0
+offset_top = 238.0
+offset_right = 1283.0
+offset_bottom = 706.0
+bbcode_enabled = true
+text = "[font_size=36][center][b]Oh noes[b]
+
+You have died to:
+[color=red][i] probably oxygen deprivation [/i] [/color]
+
+Unfortunatly you are not able to chew the legendary bubblegum.
+
+Now the world remains unchanged."
+fit_content = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 19.0
+offset_right = 158.0
+offset_bottom = 50.0
+text = "Return To menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
