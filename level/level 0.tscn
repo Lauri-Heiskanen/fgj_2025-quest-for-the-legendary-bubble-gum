@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://btv6ihg5kw706"]
+[gd_scene load_steps=12 format=3 uid="uid://btv6ihg5kw706"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_posds"]
 [ext_resource type="Script" path="res://scripts/level_0.gd" id="1_yj7y7"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="9_b48wd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe7he"]
+
+[sub_resource type="Environment" id="Environment_qqf1n"]
+fog_enabled = true
+fog_light_color = Color(0.0902371, 0.142881, 0.160132, 1)
+fog_density = 0.35
+fog_height = 0.3
 
 [node name="Level0" type="Node3D"]
 script = ExtResource("1_yj7y7")
@@ -90,6 +96,9 @@ tunnel to dive into
 new area.
 Try the lever ahead. "
 font_size = 26
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qqf1n")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="Interactive_Button3D" to="." method="_on_interactive_button_3d_send_button_state"]
