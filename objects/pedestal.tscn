@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b23wna1ly1sut"]
+
+[ext_resource type="Texture2D" uid="uid://pw7i7r7h8srj" path="res://blenderFiles/textures/bakedColor.002.png" id="1_khhmt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7nuj"]
+albedo_texture = ExtResource("1_khhmt")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jj7dh"]
+height = 3.0
+
+[node name="Pedestal" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_v7nuj")
+mesh = SubResource("CylinderMesh_jj7dh")

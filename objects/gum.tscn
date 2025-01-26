@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgait1vqe0cxf"]
+
+[ext_resource type="PackedScene" uid="uid://dtm62w5lsp0kl" path="res://blenderFiles/bubble_gum.blend" id="1_lfims"]
+[ext_resource type="Texture2D" uid="uid://b2l142p67qr42" path="res://blenderFiles/textures/GumColour.png" id="2_61t7x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ow0sp"]
+albedo_texture = ExtResource("2_61t7x")
+
+[sub_resource type="Animation" id="Animation_clxcp"]
+resource_name = "rot"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble_gum:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble_gum:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.46667, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x6bw7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble_gum:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble_gum:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qawi6"]
+_data = {
+"RESET": SubResource("Animation_x6bw7"),
+"rot": SubResource("Animation_clxcp")
+}
+
+[node name="Gum" type="Node3D"]
+
+[node name="bubble_gum" parent="." instance=ExtResource("1_lfims")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Quad Sphere" parent="bubble_gum" index="0"]
+material_override = SubResource("StandardMaterial3D_ow0sp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qawi6")
+}
+autoplay = "rot"
+
+[editable path="bubble_gum"]
