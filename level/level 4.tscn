@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://c64gdy041wmwn"]
+
+[ext_resource type="Script" path="res://level/level_4.gd" id="1_5f8j0"]
+[ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_pwvsa"]
+[ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_oalw8"]
+[ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="3_sjdce"]
+[ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="4_aybx1"]
+[ext_resource type="PackedScene" uid="uid://bd06t4dqluxgo" path="res://objects/DoorWay.tscn" id="5_aiq3y"]
+[ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="6_ow43n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yqcv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvdb5"]
+
+[node name="Level4" type="Node3D"]
+script = ExtResource("1_5f8j0")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_pwvsa")
+cell_size = Vector3(4, 4, 4)
+data = {
+"cells": PackedInt32Array(0, 1, 3, 0, 0, 0, 0, 65535, 0, 0, 65534, 1048580, 1, 65534, 1048581, 65535, 65534, 1048576, 65534, 65534, 655364, 2, 65534, 4, 65534, 65533, 5, 2, 65533, 655365, 2, 65532, 4, 65534, 65532, 655364, 65534, 65531, 1048576, 2, 65531, 1048576, 1, 65532, 1048576, 65535, 65532, 1048576, 0, 65532, 1441796, 0, 65531, 655360, 0, 65530, 655360, 0, 65529, 655363, 2, 65535, 1048576, 65534, 65535, 1048576)
+}
+
+[node name="Player" parent="." instance=ExtResource("2_oalw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.6, 2)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03546, 3.18378, -22.6794)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_5yqcv")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.26709, 3.47525, -14.1661)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("BoxShape3D_qvdb5")
+
+[node name="Lever" parent="." instance=ExtResource("3_sjdce")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.99848, 3.69805, -3.15824)
+id = 1
+toggle = true
+
+[node name="Door" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.94545, 2.53215, -4.02294)
+
+[node name="Door2" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11456, 2.10159, -6.04328)
+
+[node name="Door3" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.06257, 2.06773, -14.0024)
+
+[node name="Door4" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.04593, 2.10128, -14.0214)
+
+[node name="Door5" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1045, 2.12559, -6.01783)
+
+[node name="Door6" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.068, 2.52932, -9.97455)
+
+[node name="Lever2" parent="." instance=ExtResource("3_sjdce")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.8995, 3.76852, -9.96519)
+id = 2
+toggle = true
+
+[node name="DoorWay" parent="." instance=ExtResource("5_aiq3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -20)
+
+[node name="DoorWay2" parent="." instance=ExtResource("5_aiq3y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -18)
+
+[node name="Interactive_Button3D" parent="." instance=ExtResource("6_ow43n")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.85707, 3.666, -10.0306)
+
+[node name="Door7" parent="." instance=ExtResource("4_aybx1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.00915, 2.54736, -9.99825)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]
+[connection signal="send_button_state" from="Lever" to="." method="_on_lever_send_button_state"]
+[connection signal="send_button_state" from="Lever2" to="." method="_on_lever_send_button_state"]
+[connection signal="send_button_state" from="Interactive_Button3D" to="." method="_on_interactive_button_3d_send_button_state"]
