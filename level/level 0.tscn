@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://btv6ihg5kw706"]
+[gd_scene load_steps=11 format=3 uid="uid://btv6ihg5kw706"]
 
-[ext_resource type="MeshLibrary" path="res://meshlib/meshLib2.tres" id="1_posds"]
+[ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_posds"]
 [ext_resource type="Script" path="res://scripts/level_0.gd" id="1_yj7y7"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_w0pq6"]
 [ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="4_ekius"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_dwijl"]
 [ext_resource type="PackedScene" uid="uid://bd06t4dqluxgo" path="res://objects/DoorWay.tscn" id="6_v8n54"]
 [ext_resource type="PackedScene" uid="uid://bqncl0i0y1rfv" path="res://objects/wall.tscn" id="7_g46e1"]
+[ext_resource type="PackedScene" uid="uid://c7lxmnh707oxt" path="res://3dModels/Televisio.glb" id="9_777of"]
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="9_b48wd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe7he"]
@@ -23,7 +24,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_w0pq6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 3, 10)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 3, 10)
 
 [node name="Door" parent="." instance=ExtResource("4_ekius")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90615, 2.07858, 29.9768)
@@ -66,6 +67,29 @@ text = "Press to find out "
 
 [node name="Lever" parent="." instance=ExtResource("5_dwijl")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.9505, 3.81065, 25.9736)
+
+[node name="Televisio" parent="." instance=ExtResource("9_777of")]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 7.6638, 2.14072, 10.0559)
+
+[node name="Label3D" type="Label3D" parent="Televisio"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.388119, 1.29451, 0)
+text = "Move with S, and W
+Turn with A, and D
+Interract with
+mouse"
+font_size = 26
+
+[node name="Televisio2" parent="." instance=ExtResource("9_777of")]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 7.85971, 2.01616, 13.8892)
+
+[node name="Label3D" type="Label3D" parent="Televisio2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.388119, 1.2709, 0)
+text = "To proceed,
+find the next water
+tunnel to dive into
+new area.
+Try the lever ahead. "
+font_size = 26
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="Interactive_Button3D" to="." method="_on_interactive_button_3d_send_button_state"]

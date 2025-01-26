@@ -40,6 +40,10 @@ target_position = Vector3(0, 0, 4)
 
 [node name="Time_Until_Demise" type="Timer" parent="."]
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+omni_range = 3.0
+
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 [connection signal="timeout" from="Time_Until_Demise" to="." method="_on_time_until_demise_timeout"]
 

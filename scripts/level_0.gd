@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if(levelUp):
 		get_tree().change_scene_to_file("res://level/level 1.tscn")
 
@@ -26,6 +26,6 @@ func _on_interactive_lever_3d_send_lever_state_change(id: int, state: bool) -> v
 		$DoorWay/Door.openDoor()
 
 
-func _on_interactive_button_3d_send_button_state(id: int, toggle_state: bool) -> void:
+func _on_interactive_button_3d_send_button_state(id: int, _toggle_state: bool) -> void:
 	if (id == 1):
 		$Door.closeDoor()

@@ -41,7 +41,7 @@ func _ready() -> void:
 	airsupply.value = time_until_demise
 	death_timer.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	airsupply.value = death_timer.time_left
 
 
