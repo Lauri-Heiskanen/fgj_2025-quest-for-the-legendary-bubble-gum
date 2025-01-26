@@ -30,6 +30,7 @@ data = {
 
 [node name="Player" parent="." instance=ExtResource("2_v6d7q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 2)
+time_until_demise = 75
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00778, 3.72029, -23.8566)
