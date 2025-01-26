@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://csigcn41x5gdt"]
+[gd_scene load_steps=9 format=3 uid="uid://csigcn41x5gdt"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_e1pvb"]
 [ext_resource type="Script" path="res://level/level_2.gd" id="1_vl04i"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bd06t4dqluxgo" path="res://objects/DoorWay.tscn" id="4_oud5k"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_7jxf0"]
 [ext_resource type="PackedScene" uid="uid://bcxq2dtpk6q72" path="res://objects/wrench.tscn" id="6_s4jbo"]
-[ext_resource type="PackedScene" uid="uid://cmi1idssn5b5d" path="res://objects/hatch.tscn" id="7_4et8r"]
+[ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="7_tp52i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vxnf"]
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_vl04i")
@@ -15,11 +17,17 @@ script = ExtResource("1_vl04i")
 mesh_library = ExtResource("1_e1pvb")
 cell_size = Vector3(4, 4, 4)
 data = {
-"cells": PackedInt32Array(0, 1, 3, 0, 65534, 5, 0, 65531, 655360, 0, 65530, 655360, 0, 65529, 655363, 0, 65535, 655365, 0, 0, 655360, 0, 65532, 655365)
+"cells": PackedInt32Array(0, 1, 3, 0, 65534, 5, 0, 65531, 655360, 0, 65530, 655360, 0, 65529, 655363, 0, 65535, 655365, 0, 0, 655360, 0, 65532, 655365, 0, 65533, 0)
 }
 
 [node name="Player" parent="." instance=ExtResource("2_v6d7q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 2)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00778, 3.72029, -23.8566)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_1vxnf")
 
 [node name="DoorWay" parent="." instance=ExtResource("4_oud5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -21)
@@ -30,8 +38,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.435,
 [node name="Wrench" parent="." instance=ExtResource("6_s4jbo")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 4.34027, 3.75867, -1.9829)
 
-[node name="hatchW" parent="." instance=ExtResource("7_4et8r")]
+[node name="Door" parent="." instance=ExtResource("7_tp52i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99042, 2.54439, -1.99196)
 
-[node name="hatchP" parent="." instance=ExtResource("7_4et8r")]
+[node name="Door2" parent="." instance=ExtResource("7_tp52i")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.46927, -5.92398)
 
-[connection signal="send_lever_stateChange" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="send_button_state" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_button_state"]
