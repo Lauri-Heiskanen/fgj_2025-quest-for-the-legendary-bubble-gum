@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
 [ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
-[ext_resource type="AudioStream" uid="uid://cfy4sg2g1x14i" path="res://sfx/fgj2025Swalk.mp3" id="3_ndgkt"]
+[ext_resource type="AudioStream" uid="uid://c1qaujxds384" path="res://sfx/fgj2025Swalk.mp3" id="3_ndgkt"]
 [ext_resource type="AudioStream" uid="uid://d0ud6iii6hr0x" path="res://music/game.mp3" id="4_jyw00"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xby0o"]

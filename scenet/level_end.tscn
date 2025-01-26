@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bd74jkdw3ab8i"]
 
 [ext_resource type="Script" path="res://scripts/level_end.gd" id="1_7gyxt"]
-[ext_resource type="AudioStream" uid="uid://dridvn3hv0jme" path="res://sfx/fgj2025Torvi.mp3" id="2_l17q8"]
+[ext_resource type="AudioStream" uid="uid://ckassph6efwlj" path="res://sfx/fgj2025Torvi.mp3" id="2_l17q8"]
 
 [node name="Level_End" type="Area3D"]
 script = ExtResource("1_7gyxt")
