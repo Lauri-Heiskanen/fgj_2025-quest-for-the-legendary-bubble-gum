@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://csigcn41x5gdt"]
+[gd_scene load_steps=13 format=3 uid="uid://csigcn41x5gdt"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_e1pvb"]
 [ext_resource type="Script" path="res://level/level_2.gd" id="1_vl04i"]
@@ -9,14 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="7_tp52i"]
 [ext_resource type="PackedScene" uid="uid://bk4l81g135y7i" path="res://objects/conditional_action.tscn" id="8_2kfo2"]
 [ext_resource type="PackedScene" uid="uid://cjq73kw12myrb" path="res://3dModels/pipe.glb" id="9_bg8fx"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1vxnf"]
+[ext_resource type="PackedScene" uid="uid://bd74jkdw3ab8i" path="res://scenet/level_end.tscn" id="10_ainwg"]
 
 [sub_resource type="Environment" id="Environment_b4y6p"]
 fog_enabled = true
 fog_light_color = Color(0.0902371, 0.142881, 0.160132, 1)
 fog_density = 0.35
 fog_height = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g00ig"]
+size = Vector3(4, 4, 4)
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_vl04i")
@@ -31,12 +33,6 @@ data = {
 [node name="Player" parent="." instance=ExtResource("2_v6d7q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 2)
 time_until_demise = 75
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00778, 3.72029, -23.8566)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_1vxnf")
 
 [node name="DoorWay" parent="." instance=ExtResource("4_oud5k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -21)
@@ -70,9 +66,17 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.520859, 0.474116)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b4y6p")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Level_End" parent="." instance=ExtResource("10_ainwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28346, 4.82947, -27.0784)
+
+[node name="CollisionShape3D" parent="Level_End" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.479239, 0.797398)
+shape = SubResource("BoxShape3D_g00ig")
+
 [connection signal="send_button_state" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_button_state"]
 [connection signal="send_item" from="Wrench" to="Player" method="add_item"]
 [connection signal="send_state" from="ConditionalAction" to="." method="_on_conditional_action_send_state"]
+[connection signal="body_entered" from="Level_End" to="." method="_on_area_3d_body_entered"]
 
 [editable path="ConditionalAction"]
+[editable path="Level_End"]
