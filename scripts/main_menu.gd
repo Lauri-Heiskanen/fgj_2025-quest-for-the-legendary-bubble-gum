@@ -6,7 +6,7 @@ signal btn_settings()
 signal btn_credits()
 signal btn_exit()
 
-@onready var level = preload("res://level/level 0.tscn")
+@onready var level = preload("res://scenet/intro_video.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
