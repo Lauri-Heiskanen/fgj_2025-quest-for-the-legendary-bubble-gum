@@ -103,3 +103,6 @@ environment = SubResource("Environment_qqf1n")
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="Interactive_Button3D" to="." method="_on_interactive_button_3d_send_button_state"]
 [connection signal="send_button_state" from="Lever" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
+
+[editable path="Player"]
+[editable path="Player/PlayerUI"]

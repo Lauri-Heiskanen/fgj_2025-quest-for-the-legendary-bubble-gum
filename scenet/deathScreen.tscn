@@ -19,7 +19,7 @@ anchor_right = 0.6
 anchor_bottom = 0.6
 offset_right = -0.153687
 offset_bottom = -0.0864258
-color = Color(0.498039, 0.745098, 1, 1)
+color = Color(0.0968858, 0.0860203, 0.0823187, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

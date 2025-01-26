@@ -50,6 +50,7 @@ omni_range = 3.0
 stream = SubResource("AudioStreamWAV_kvdcr")
 
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
+[connection signal="animation_finished" from="PlayerUI/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Time_Until_Demise" to="." method="_on_time_until_demise_timeout"]
 
 [editable path="PlayerUI"]

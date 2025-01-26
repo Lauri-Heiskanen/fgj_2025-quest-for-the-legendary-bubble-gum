@@ -14,7 +14,7 @@ const JUMP_VELOCITY = 4.5
 @onready var ray2 : RayCast3D = $Head/First/RayCast3D2
 
 @onready var audioStreamPlayer : AudioStreamPlayer3D = $AudioStreamPlayer3D
-
+@onready var anim_player : AnimationPlayer = $PlayerUI/AnimationPlayer
 @onready var hotbar : HBoxContainer = $PlayerUI/hotbar_container/hotbar
 var player_items : Array = [null, null, null, null] # create array to store item information
 var player_active_slot : int = 0
@@ -27,6 +27,7 @@ var target_rot: Quaternion = Quaternion(transform.basis)
 var target_pos: Transform3D = transform
 
 var deathReason: String = ""
+var dying : bool = false
 # src: https://www.reddit.com/r/godot/comments/8ft84k/deleted_by_user/
 func get_obj():
 	var mouse = get_viewport().get_mouse_position()
@@ -42,6 +43,7 @@ func _ready() -> void:
 	cam_first.make_current()
 	death_timer.wait_time = time_until_demise
 	airsupply.value = time_until_demise
+	anim_player.play_backwards("fade")
 	death_timer.start()
 
 func _process(_delta: float) -> void:
@@ -152,7 +154,14 @@ func has_item(item: String):
 
 
 func _on_time_until_demise_timeout() -> void:
-	die()
+	anim_player.play("fade")
+	dying = true
 
 func die() -> void:
 	get_tree().change_scene_to_file("res://scenet/deathScreen.tscn")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if dying:
+		die()
+	
