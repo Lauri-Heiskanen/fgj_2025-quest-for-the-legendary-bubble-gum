@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://1ohsnw7del1s"]
+[gd_scene load_steps=7 format=3 uid="uid://1ohsnw7del1s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
 [ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
@@ -11,6 +11,8 @@ size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bqdjl"]
 size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_kvdcr"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dbqef")
@@ -43,6 +45,9 @@ one_shot = true
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 omni_range = 3.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamWAV_kvdcr")
 
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 [connection signal="timeout" from="Time_Until_Demise" to="." method="_on_time_until_demise_timeout"]
