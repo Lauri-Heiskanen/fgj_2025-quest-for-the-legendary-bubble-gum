@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if(levelUp):
-		get_tree().change_scene_to_file("res://level/level 5.tscn")
+		get_tree().change_scene_to_file("res://scenet/outro_video.tscn")
 
 func levelUP():
 	levelUp = true
