@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk4l81g135y7i"]
+[gd_scene load_steps=7 format=3 uid="uid://bk4l81g135y7i"]
 
 [ext_resource type="Script" path="res://scripts/ConditionalAction.gd" id="1_kfwek"]
+[ext_resource type="Texture2D" uid="uid://dqkubr22oqx8c" path="res://3dModels/cave_bakedColor.png" id="2_ewnr4"]
+[ext_resource type="Texture2D" uid="uid://7hyof42rg5vk" path="res://uiTextures/keyhole.png" id="2_nse74"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f64bf"]
 size = Vector3(0.4, 0.4, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rl2nu"]
+albedo_texture = ExtResource("2_ewnr4")
+
 [sub_resource type="BoxMesh" id="BoxMesh_oep4o"]
+material = SubResource("StandardMaterial3D_rl2nu")
 size = Vector3(0.4, 0.4, 0.1)
 
 [node name="ConditionalAction" type="StaticBody3D"]
@@ -16,3 +22,7 @@ shape = SubResource("BoxShape3D_f64bf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_oep4o")
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D"]
+transform = Transform3D(0.304922, 0, 0, 0, 0.323722, 0, 0, 0, 1, 0, 0, 0.0514832)
+texture = ExtResource("2_nse74")

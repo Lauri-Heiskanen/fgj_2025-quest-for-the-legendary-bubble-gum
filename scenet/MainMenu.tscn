@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnwnj8c70h3cr"]
+[gd_scene load_steps=3 format=3 uid="uid://dnwnj8c70h3cr"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_4jcg3"]
+[ext_resource type="Texture2D" uid="uid://b554pfdbusso" path="res://uiTextures/bg.png" id="2_umi4i"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,19 +12,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4jcg3")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1009.0
+texture = ExtResource("2_umi4i")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0830862, 0.605865, 1, 1)
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 2
-offset_right = 1920.0
-offset_bottom = 1080.0
 size_flags_horizontal = 3
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer"]
