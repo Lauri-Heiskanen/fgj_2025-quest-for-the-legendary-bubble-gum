@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://1ohsnw7del1s"]
+[gd_scene load_steps=8 format=3 uid="uid://1ohsnw7del1s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dbqef"]
 [ext_resource type="PackedScene" uid="uid://btr28agjp3rui" path="res://scenet/player_ui.tscn" id="2_3tbcn"]
+[ext_resource type="AudioStream" uid="uid://cfy4sg2g1x14i" path="res://sfx/fgj2025Swalk.mp3" id="3_ndgkt"]
+[ext_resource type="AudioStream" uid="uid://d0ud6iii6hr0x" path="res://music/game.mp3" id="4_jyw00"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xby0o"]
 size = Vector3(0.5, 1, 0.5)
@@ -11,8 +13,6 @@ size = Vector3(0.5, 1, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bqdjl"]
 size = Vector3(0.4, 0.4, 0.4)
-
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_kvdcr"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dbqef")
@@ -47,7 +47,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 omni_range = 3.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamWAV_kvdcr")
+stream = ExtResource("3_ndgkt")
+volume_db = -10.0
+max_db = 1.0
+pitch_scale = 2.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jyw00")
+autoplay = true
+parameters/looping = false
 
 [connection signal="items_changed" from="." to="PlayerUI" method="_on_player_items_changed"]
 [connection signal="timeout" from="Time_Until_Demise" to="." method="_on_time_until_demise_timeout"]
