@@ -13,8 +13,6 @@ func _process(delta: float) -> void:
 		send_state.emit(action, true)
 		condition_met = false
 		
-
-
 func get_itemname() -> String:
 	return required_item
 	
