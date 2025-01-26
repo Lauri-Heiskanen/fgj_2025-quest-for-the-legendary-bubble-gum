@@ -34,6 +34,7 @@ data = {
 
 [node name="Player" parent="." instance=ExtResource("2_rlmrw")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 2.7, -6)
+time_until_demise = 10
 
 [node name="Televisio" parent="." instance=ExtResource("3_jybxe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0420363, 2.77098, 5.94935)

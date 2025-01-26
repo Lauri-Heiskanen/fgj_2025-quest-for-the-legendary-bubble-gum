@@ -26,3 +26,5 @@ mesh = SubResource("BoxMesh_oep4o")
 [node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D"]
 transform = Transform3D(0.304922, 0, 0, 0, 0.323722, 0, 0, 0, 1, 0, 0, 0.0514832)
 texture = ExtResource("2_nse74")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
