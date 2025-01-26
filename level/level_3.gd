@@ -41,3 +41,7 @@ func _on_lever_send_button_state(id, toggle_state):
 		else:
 			$Door5.closeDoor()
 			$Door7.openDoor()
+
+
+func _on_wrench_send_item(item):
+	$Player.add_item(item)

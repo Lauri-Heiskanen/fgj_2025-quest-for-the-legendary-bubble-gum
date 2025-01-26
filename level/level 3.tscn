@@ -70,5 +70,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.03
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="Lever" to="." method="_on_lever_send_button_state"]
+[connection signal="send_item" from="Wrench" to="." method="_on_wrench_send_item"]
 [connection signal="send_button_state" from="Interactive_Button3D2" to="." method="_on_interactive_button_3d_send_button_state"]
 [connection signal="send_button_state" from="Lever2" to="." method="_on_lever_send_button_state"]
