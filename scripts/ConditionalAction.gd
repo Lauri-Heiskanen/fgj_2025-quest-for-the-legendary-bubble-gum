@@ -1,8 +1,8 @@
 extends Node
 
-signal send_state(name: String, state: bool)
+signal send_state(id: int, state: bool)
 
-@export var action : String = ""
+@export var id : int = 0
 @export var required_item : String = ""
 var condition_met : bool = false
 
@@ -10,7 +10,7 @@ var condition_met : bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if condition_met:
-		send_state.emit(action, true)
+		send_state.emit(id, condition_met)
 		condition_met = false
 		
 func get_itemname() -> String:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c01jphpv7yoe2"]
+[gd_scene load_steps=11 format=3 uid="uid://c01jphpv7yoe2"]
 
 [ext_resource type="Script" path="res://level/level_3.gd" id="1_ne4j3"]
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="2_4afur"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="4_5bkvf"]
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_al6mo"]
 [ext_resource type="PackedScene" uid="uid://bcxq2dtpk6q72" path="res://objects/wrench.tscn" id="6_wxfif"]
-[ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="6_x7hu0"]
+[ext_resource type="PackedScene" uid="uid://bk4l81g135y7i" path="res://objects/conditional_action.tscn" id="8_2clqc"]
+[ext_resource type="PackedScene" uid="uid://cjq73kw12myrb" path="res://3dModels/pipe.glb" id="9_juai8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fo4sq"]
 
@@ -63,10 +64,6 @@ visible = false
 [node name="Wrench" parent="." instance=ExtResource("6_wxfif")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -5.95303, 3.79559, -11.5653)
 
-[node name="Interactive_Button3D2" parent="." instance=ExtResource("6_x7hu0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.79537, 3.5294, -6.10889)
-id = 2
-
 [node name="Lever2" parent="." instance=ExtResource("5_al6mo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.99907, 3.8008, -3.40901)
 id = 1
@@ -77,8 +74,25 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.03
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7bbxf")
 
+[node name="ConditionalAction" parent="." instance=ExtResource("8_2clqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5893, 3.40033, -6.36588)
+id = 2
+required_item = "wrench"
+
+[node name="CollisionShape3D" parent="ConditionalAction" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.063365, -0.373019, -0.525167)
+
+[node name="MeshInstance3D" parent="ConditionalAction" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.063365, -0.373019, -0.525167)
+visible = false
+
+[node name="pipe" parent="ConditionalAction" instance=ExtResource("9_juai8")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0673733, -1.38682, 0.0728221)
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="Lever" to="." method="_on_lever_send_button_state"]
 [connection signal="send_item" from="Wrench" to="." method="_on_wrench_send_item"]
-[connection signal="send_button_state" from="Interactive_Button3D2" to="." method="_on_interactive_button_3d_send_button_state"]
 [connection signal="send_button_state" from="Lever2" to="." method="_on_lever_send_button_state"]
+[connection signal="send_state" from="ConditionalAction" to="." method="_on_interactive_button_3d_send_button_state"]
+
+[editable path="ConditionalAction"]
