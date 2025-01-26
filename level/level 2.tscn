@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csigcn41x5gdt"]
+[gd_scene load_steps=12 format=3 uid="uid://csigcn41x5gdt"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_e1pvb"]
 [ext_resource type="Script" path="res://level/level_2.gd" id="1_vl04i"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cs1p7ktfubaqa" path="res://scenet/interactive_lever_3d.tscn" id="5_7jxf0"]
 [ext_resource type="PackedScene" uid="uid://bcxq2dtpk6q72" path="res://objects/wrench.tscn" id="6_s4jbo"]
 [ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="7_tp52i"]
+[ext_resource type="PackedScene" uid="uid://bk4l81g135y7i" path="res://objects/conditional_action.tscn" id="8_2kfo2"]
+[ext_resource type="PackedScene" uid="uid://cjq73kw12myrb" path="res://3dModels/pipe.glb" id="9_bg8fx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vxnf"]
 
@@ -50,8 +52,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99042, 2.54439, -1.99196)
 [node name="Door2" parent="." instance=ExtResource("7_tp52i")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.46927, -5.92398)
 
+[node name="ConditionalAction" parent="." instance=ExtResource("8_2kfo2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.00595, 3.82701, -5.94218)
+required_item = "wrench"
+
+[node name="CollisionShape3D" parent="ConditionalAction" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.48424)
+
+[node name="MeshInstance3D" parent="ConditionalAction" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.48424)
+visible = false
+
+[node name="pipe" parent="ConditionalAction" instance=ExtResource("9_bg8fx")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.520859, 0.474116)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b4y6p")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="interactive_lever_3d" to="." method="_on_interactive_lever_3d_send_button_state"]
+[connection signal="send_item" from="Wrench" to="Player" method="add_item"]
+[connection signal="send_state" from="ConditionalAction" to="." method="_on_conditional_action_send_state"]
+
+[editable path="ConditionalAction"]
