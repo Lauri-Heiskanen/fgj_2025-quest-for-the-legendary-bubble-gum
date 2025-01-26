@@ -1,6 +1,6 @@
 extends Node3D
 
-
+@onready var lvl_end = $Level_End
 
 var levelUp = false
 
@@ -10,13 +10,15 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if(levelUp):
-		get_tree().change_scene_to_file("res://level/level 3.tscn")
+		if lvl_end.get_fin():
+			get_tree().change_scene_to_file("res://level/level 3.tscn")
 
 func levelUP():
 	levelUp = true
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == $Player:
+		lvl_end.play_audio()
 		levelUP()
 
 func _on_interactive_lever_3d_send_button_state(id, toggle_state):

@@ -3,6 +3,8 @@ extends Node3D
 var levelUp = false
 var trap_enabled = true
 
+@onready var lvl_end = $Level_End
+
 func _ready():
 	$Door2.openDoor()
 	$Door3.openDoor()
@@ -12,13 +14,15 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if(levelUp):
-		get_tree().change_scene_to_file("res://level/level 5.tscn")
+		if lvl_end.get_fin():
+			get_tree().change_scene_to_file("res://level/level 5.tscn")
 
 func levelUP():
 	levelUp = true
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == $Player:
+		lvl_end.play_audio()
 		levelUP()
 
 func _on_interactive_button_3d_send_button_state(id, toggle_state):

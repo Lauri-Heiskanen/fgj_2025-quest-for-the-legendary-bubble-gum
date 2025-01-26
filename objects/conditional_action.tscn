@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk4l81g135y7i"]
+[gd_scene load_steps=8 format=3 uid="uid://bk4l81g135y7i"]
 
 [ext_resource type="Script" path="res://scripts/ConditionalAction.gd" id="1_kfwek"]
 [ext_resource type="Texture2D" uid="uid://dqkubr22oqx8c" path="res://3dModels/cave_bakedColor.png" id="2_ewnr4"]
 [ext_resource type="Texture2D" uid="uid://7hyof42rg5vk" path="res://uiTextures/keyhole.png" id="2_nse74"]
+[ext_resource type="AudioStream" uid="uid://cktruvtbtmmbt" path="res://sfx/fgj2025Gas.mp3" id="4_uxka4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f64bf"]
 size = Vector3(0.4, 0.4, 0.1)
@@ -28,3 +29,4 @@ transform = Transform3D(0.304922, 0, 0, 0, 0.323722, 0, 0, 0, 1, 0, 0, 0.0514832
 texture = ExtResource("2_nse74")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_uxka4")

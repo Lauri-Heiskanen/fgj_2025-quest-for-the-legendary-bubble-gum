@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://btv6ihg5kw706"]
+[gd_scene load_steps=13 format=3 uid="uid://btv6ihg5kw706"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_posds"]
 [ext_resource type="Script" path="res://scripts/level_0.gd" id="1_yj7y7"]
@@ -9,14 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://bqncl0i0y1rfv" path="res://objects/wall.tscn" id="7_g46e1"]
 [ext_resource type="PackedScene" uid="uid://c7lxmnh707oxt" path="res://3dModels/Televisio.glb" id="9_777of"]
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="9_b48wd"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qe7he"]
+[ext_resource type="PackedScene" uid="uid://bd74jkdw3ab8i" path="res://scenet/level_end.tscn" id="10_mj2el"]
 
 [sub_resource type="Environment" id="Environment_qqf1n"]
 fog_enabled = true
 fog_light_color = Color(0.0902371, 0.142881, 0.160132, 1)
 fog_density = 0.35
 fog_height = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4mgq"]
+size = Vector3(4, 4, 4)
 
 [node name="Level0" type="Node3D"]
 script = ExtResource("1_yj7y7")
@@ -34,12 +36,6 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 3, 10
 
 [node name="Door" parent="." instance=ExtResource("4_ekius")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90615, 2.07858, 29.9768)
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6, 4, 38.1007)
-shape = SubResource("BoxShape3D_qe7he")
 
 [node name="DoorWay" parent="." instance=ExtResource("6_v8n54")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 33)
@@ -100,9 +96,17 @@ font_size = 26
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qqf1n")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Level_End" parent="." instance=ExtResource("10_mj2el")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34805, 0.75666, 38.3774)
+
+[node name="CollisionShape3D" parent="Level_End" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79814, -0.538441)
+shape = SubResource("BoxShape3D_d4mgq")
+
 [connection signal="send_button_state" from="Interactive_Button3D" to="." method="_on_interactive_button_3d_send_button_state"]
 [connection signal="send_button_state" from="Lever" to="." method="_on_interactive_lever_3d_send_lever_state_change"]
+[connection signal="body_entered" from="Level_End" to="." method="_on_area_3d_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/PlayerUI"]
+[editable path="Level_End"]

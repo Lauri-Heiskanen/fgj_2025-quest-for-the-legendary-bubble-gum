@@ -6,10 +6,12 @@ signal send_state(id: int, state: bool)
 @export var required_item : String = ""
 var condition_met : bool = false
 
+@onready var audioplayer : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if condition_met:
+		audioplayer.play()
 		send_state.emit(id, condition_met)
 		condition_met = false
 		
