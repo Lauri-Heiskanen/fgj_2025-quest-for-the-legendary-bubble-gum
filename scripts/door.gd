@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var audioStreamPlayer : AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 var isDoorOpen = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,8 +17,10 @@ func openDoor() -> void:
 	if(!isDoorOpen):
 		isDoorOpen = true
 		$AnimationPlayer.play("openDoor")
+		audioStreamPlayer.play()
 
 func closeDoor() -> void:
 	if(isDoorOpen):
 		isDoorOpen = false
 		$AnimationPlayer.play_backwards("openDoor")
+		audioStreamPlayer.play()

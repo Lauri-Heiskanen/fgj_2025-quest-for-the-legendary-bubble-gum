@@ -13,6 +13,8 @@ const JUMP_VELOCITY = 4.5
 @onready var ray : RayCast3D = $Head/First/RayCast3D
 @onready var ray2 : RayCast3D = $Head/First/RayCast3D2
 
+@onready var audioStreamPlayer : AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 @onready var hotbar : HBoxContainer = $PlayerUI/hotbar_container/hotbar
 var player_items : Array = [null, null, null, null] # create array to store item information
 var player_active_slot : int = 0
@@ -49,6 +51,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("forward"):
 		if !is_rotating && !is_moving && !ray.is_colliding():
+			audioStreamPlayer.play()
 			is_moving = true
 			delta_sum = 0
 			var player_quat = Quaternion(transform.basis)
@@ -56,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	
 	elif Input.is_action_pressed("backward"):
 		if !is_rotating && !is_moving && !ray2.is_colliding():
+			audioStreamPlayer.play()
 			is_moving = true
 			delta_sum = 0
 			var player_quat = Quaternion(transform.basis)
