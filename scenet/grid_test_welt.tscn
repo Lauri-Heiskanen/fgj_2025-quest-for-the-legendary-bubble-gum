@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwg0b1vgtc6fm"]
+[gd_scene load_steps=13 format=3 uid="uid://cwg0b1vgtc6fm"]
 
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="1_8iciv"]
 [ext_resource type="Script" path="res://scripts/grid_test_welt.gd" id="1_78bor"]
+[ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="2_1nq6l"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_rm1hk"]
 [ext_resource type="PackedScene" uid="uid://bhoql7p04igp8" path="res://objects/key.tscn" id="3_tv5an"]
 [ext_resource type="PackedScene" uid="uid://bcxq2dtpk6q72" path="res://objects/wrench.tscn" id="4_nlh1v"]
 [ext_resource type="PackedScene" uid="uid://21y4jo33eqbn" path="res://scenet/interactive_valve_3d.tscn" id="6_cfoxd"]
+[ext_resource type="PackedScene" uid="uid://bk4l81g135y7i" path="res://objects/conditional_action.tscn" id="7_j34xy"]
+[ext_resource type="PackedScene" uid="uid://cmi1idssn5b5d" path="res://objects/hatch.tscn" id="8_3g4m0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dpetw"]
 sky_top_color = Color(0.19966, 0.244789, 0.30755, 1)
@@ -22,6 +25,9 @@ fog_light_color = Color(0.255062, 0.279576, 0.318112, 1)
 
 [node name="GridTestWelt" type="Node3D"]
 script = ExtResource("1_78bor")
+
+[node name="Door" parent="." instance=ExtResource("2_1nq6l")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 2, -9)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4sv8q")
@@ -46,6 +52,14 @@ toggle = true
 [node name="Valve" parent="." instance=ExtResource("6_cfoxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07708, 3.28962, -4)
 
+[node name="ConditionalAction" parent="." instance=ExtResource("7_j34xy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5, -5)
+required_item = "key"
+
+[node name="hatch" parent="." instance=ExtResource("8_3g4m0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.49691e-07, 4, -8)
+
 [connection signal="send_item" from="Key" to="." method="_receive_item"]
 [connection signal="send_item" from="Wrench" to="." method="_receive_item"]
 [connection signal="send_button_state" from="Interactive_Button3D" to="." method="_receive_state"]
+[connection signal="send_state" from="ConditionalAction" to="." method="_on_conditional_action_send_state"]

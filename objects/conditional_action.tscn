@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk4l81g135y7i"]
+
+[ext_resource type="Script" path="res://scripts/ConditionalAction.gd" id="1_kfwek"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f64bf"]
+size = Vector3(0.4, 0.4, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oep4o"]
+size = Vector3(0.4, 0.4, 0.1)
+
+[node name="ConditionalAction" type="StaticBody3D"]
+script = ExtResource("1_kfwek")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_f64bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_oep4o")
