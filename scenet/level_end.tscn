@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd74jkdw3ab8i"]
+
+[ext_resource type="Script" path="res://scripts/level_end.gd" id="1_7gyxt"]
+
+[node name="Level_End" type="Area3D"]
+script = ExtResource("1_7gyxt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

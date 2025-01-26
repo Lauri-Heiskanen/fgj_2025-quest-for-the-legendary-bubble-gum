@@ -1,19 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqu6qlnbvmahk"]
+[gd_scene load_steps=14 format=3 uid="uid://dqu6qlnbvmahk"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_fvy85"]
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_uvtyj"]
 [ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_rlmrw"]
 [ext_resource type="PackedScene" uid="uid://c7lxmnh707oxt" path="res://3dModels/Televisio.glb" id="3_jybxe"]
 [ext_resource type="PackedScene" uid="uid://cqgxsesp117y4" path="res://3dModels/Kaappi.glb" id="4_7kn4m"]
-[ext_resource type="PackedScene" uid="uid://bseox1t7ydvmo" path="res://objects/door.tscn" id="5_53jir"]
+[ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="5_53jir"]
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="6_phfkl"]
+[ext_resource type="PackedScene" uid="uid://bhoql7p04igp8" path="res://objects/key.tscn" id="8_8reos"]
+[ext_resource type="PackedScene" uid="uid://cmi1idssn5b5d" path="res://objects/hatch.tscn" id="9_hldxq"]
+[ext_resource type="PackedScene" uid="uid://bd74jkdw3ab8i" path="res://scenet/level_end.tscn" id="10_5kyyk"]
+[ext_resource type="PackedScene" uid="uid://bk4l81g135y7i" path="res://objects/conditional_action.tscn" id="10_5q78n"]
+[ext_resource type="PackedScene" uid="uid://bqncl0i0y1rfv" path="res://objects/wall.tscn" id="11_42e5x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ow142"]
+size = Vector3(4, 4, 4)
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_uvtyj")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_fvy85")
 cell_size = Vector3(4, 4, 4)
 data = {
-"cells": PackedInt32Array(65535, 65533, 655363, 65535, 6, 655360, 65535, 65534, 655360, 65535, 65535, 655360, 65535, 3, 655360, 65535, 5, 655360, 65535, 2, 5, 65535, 0, 4, 65535, 1, 655360, 65535, 4, 655365)
+"cells": PackedInt32Array(65535, 65533, 655363, 65535, 6, 655360, 65535, 65534, 655360, 65535, 65535, 655360, 65535, 3, 655360, 65535, 5, 655360, 65535, 2, 5, 65535, 0, 4, 65535, 1, 655360, 65535, 4, 655365, 65535, 7, 3)
 }
 
 [node name="Player" parent="." instance=ExtResource("2_rlmrw")]
@@ -23,13 +33,39 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 2.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0420363, 2.77098, 5.94935)
 
 [node name="Kaappi" parent="." instance=ExtResource("4_7kn4m")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.56455, 2, 23)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.56455, 2, 22.7314)
 
 [node name="Door" parent="." instance=ExtResource("5_53jir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.78721, 2.12984, 2)
 
 [node name="Btn_door" parent="." instance=ExtResource("6_phfkl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.98136, 3.76553, 10)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -4.37555, 3.76553, 9.46943)
 
 [node name="Btn_TV" parent="." instance=ExtResource("6_phfkl")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.906595, 3.78376, 18)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.223386, 3.78376, 18.5043)
+
+[node name="Key" parent="." instance=ExtResource("8_8reos")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.418415, 3.78677, 17.8335)
+
+[node name="hatch" parent="." instance=ExtResource("9_hldxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0659111, 3.79354, 17.9837)
+
+[node name="ConditionalAction" parent="." instance=ExtResource("10_5q78n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.222968, 3.46836, 21.9474)
+required_item = "key"
+
+[node name="Wall" parent="." instance=ExtResource("11_42e5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05508, 2.09457, 24.0011)
+
+[node name="Level_End" parent="." instance=ExtResource("10_5kyyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.11236, 29.9831)
+
+[node name="CollisionShape3D" parent="Level_End" index="0"]
+shape = SubResource("BoxShape3D_ow142")
+
+[connection signal="send_button_state" from="Btn_door" to="." method="_on_btn_door_send_button_state"]
+[connection signal="send_item" from="Key" to="Player" method="add_item"]
+[connection signal="send_state" from="ConditionalAction" to="." method="_on_conditional_action_send_state"]
+[connection signal="body_entered" from="Level_End" to="." method="_on_level_end_body_entered"]
+
+[editable path="Level_End"]
