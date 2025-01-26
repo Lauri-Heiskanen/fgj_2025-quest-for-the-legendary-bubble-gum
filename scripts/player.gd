@@ -24,7 +24,15 @@ var delta_sum: float = 0
 var target_rot: Quaternion = Quaternion(transform.basis)
 var target_pos: Transform3D = transform
 
-var step 
+# src: https://www.reddit.com/r/godot/comments/8ft84k/deleted_by_user/
+func get_obj():
+	var mouse = get_viewport().get_mouse_position()
+	var from_vec3 = cam_first.project_ray_origin(mouse)
+	var to_vec3 = from_vec3 + cam_first.project_ray_normal(mouse) * 6
+	var sp = get_world_3d().direct_space_state
+	var sel = sp.intersect_ray(PhysicsRayQueryParameters3D.create(from_vec3, to_vec3))
+	return sel
+
 
 func _ready() -> void:
 	# Player cam as main
@@ -35,6 +43,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	airsupply.value = death_timer.time_left
+
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("forward"):
@@ -88,7 +97,7 @@ func _physics_process(delta: float) -> void:
 			is_rotating = false
 		elif delta_sum < 1:
 			transform.basis = Basis(Quaternion(transform.basis).slerp(target_rot, delta_sum))
-			
+
 	if is_moving:
 		if delta_sum == 1:
 			transform = target_pos
@@ -98,6 +107,24 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("LMB"):
+		var sel = get_obj()
+		print(sel)
+		if !sel.has("collider"):
+			return
+		print(sel["collider"])
+		var body : StaticBody3D = sel["collider"]
+		print(body.has_method("set_condition"))
+		if body.has_method("set_condition"):
+			print(body.get_itemname())
+			print(player_items.has(body.get_itemname()))
+			if player_items.has(body.get_itemname()):
+				body.set_condition(true)	
+				print("Item found from inv")
+			
+			
+
 func add_item(item: String):
 	var i : int = 0
 	while i < 4:
@@ -106,7 +133,8 @@ func add_item(item: String):
 			items_changed.emit(i, item)
 			break
 		i += 1
-
+	print(player_items)
+	
 func remove_item(item: String):
 	var i : int = 0
 	while i < 4:
