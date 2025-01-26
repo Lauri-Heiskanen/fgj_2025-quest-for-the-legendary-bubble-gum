@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c01jphpv7yoe2"]
+[gd_scene load_steps=10 format=3 uid="uid://c01jphpv7yoe2"]
 
 [ext_resource type="Script" path="res://level/level_3.gd" id="1_ne4j3"]
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="2_4afur"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://c5qxj4ol5ddn2" path="res://scenet/interactive_button_3d.tscn" id="6_x7hu0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fo4sq"]
+
+[sub_resource type="Environment" id="Environment_7bbxf"]
+fog_enabled = true
+fog_light_color = Color(0.0902371, 0.142881, 0.160132, 1)
+fog_density = 0.35
+fog_height = 0.3
 
 [node name="Level3" type="Node3D"]
 script = ExtResource("1_ne4j3")
@@ -67,6 +73,9 @@ id = 1
 
 [node name="Door7" parent="." instance=ExtResource("4_5bkvf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.0399, 2.09862, -12.0725)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7bbxf")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="send_button_state" from="Lever" to="." method="_on_lever_send_button_state"]

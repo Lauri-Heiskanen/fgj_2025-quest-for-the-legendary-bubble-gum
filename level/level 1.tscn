@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqu6qlnbvmahk"]
+[gd_scene load_steps=15 format=3 uid="uid://dqu6qlnbvmahk"]
 
 [ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_fvy85"]
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_uvtyj"]
@@ -15,6 +15,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ow142"]
 size = Vector3(4, 4, 4)
+
+[sub_resource type="Environment" id="Environment_757oj"]
+fog_enabled = true
+fog_light_color = Color(0.0902371, 0.142881, 0.160132, 1)
+fog_density = 0.35
+fog_height = 0.3
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_uvtyj")
@@ -62,6 +68,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.11236, 29.9831)
 
 [node name="CollisionShape3D" parent="Level_End" index="0"]
 shape = SubResource("BoxShape3D_ow142")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_757oj")
 
 [connection signal="send_button_state" from="Btn_door" to="." method="_on_btn_door_send_button_state"]
 [connection signal="send_item" from="Key" to="Player" method="add_item"]

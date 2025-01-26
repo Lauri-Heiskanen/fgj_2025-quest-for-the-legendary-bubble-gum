@@ -21,11 +21,12 @@ func _on_btn_door_send_button_state(id: int, toggle_state: bool) -> void:
 
 func _on_level_end_body_entered(body: Node3D) -> void:
 	print("ready to move to next place")
-	levelUp = true
+	if body == $Player:
+		levelUp = true
 
 
 func _on_conditional_action_send_state(name: String, state: bool) -> void:
-	print("Condition met")
+	#print("Condition met")
 	wall.play_anim(wall_state)
 	wall_state = !wall_state
 	

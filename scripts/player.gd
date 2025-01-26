@@ -111,14 +111,11 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("LMB"):
 		var sel = get_obj()
-		print(sel)
 		if !sel.has("collider"):
 			return
-		print("Coll: ", sel["collider"])
 		var body = sel["collider"]
 		if body.has_method("set_condition"):
-			print("req: ", body.get_itemname())
-			print("items: ", player_items)
+			print("req: ", body.get_itemname(), " items: ", player_items)
 			if player_items.has(body.get_itemname()):
 				body.set_condition(true)
 				print("Item found from inv")
