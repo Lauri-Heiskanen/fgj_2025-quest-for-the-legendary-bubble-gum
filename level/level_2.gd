@@ -26,3 +26,7 @@ func _on_interactive_lever_3d_send_button_state(id, toggle_state):
 	elif (id == 0 and !toggle_state):
 		$Door.closeDoor()
 		$Door2.openDoor()
+
+
+func _on_conditional_action_send_state(name: String, state: bool) -> void:
+	$DoorWay.openDoor()
