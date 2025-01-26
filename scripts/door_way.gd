@@ -15,3 +15,8 @@ func openDoor() -> void:
 	if(!doorOpen):
 		doorOpen = true
 		$Door/AnimationPlayer.play("openDoor")
+
+func closeDoor() -> void:
+	if(doorOpen):
+		doorOpen = false
+		$Door/AnimationPlayer.play_backwards("openDoor")
