@@ -22,8 +22,8 @@ color = Color(0.0830862, 0.605865, 1, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
 
 [node name="Buttons" type="VBoxContainer" parent="CenterContainer"]
@@ -51,12 +51,18 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -113.0
-offset_top = 100.0
-offset_right = 113.0
-offset_bottom = 140.0
+offset_left = -227.0
+offset_top = 126.0
+offset_right = 1.0
+offset_bottom = 198.0
 grow_horizontal = 2
+scale = Vector2(2, 2)
+tooltip_text = "VERY EPIC VERY NICE 
+
+ :D"
 text = "Legendary bubblegum quest"
+fit_content = true
+tab_size = 5
 
 [connection signal="pressed" from="CenterContainer/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CenterContainer/Buttons/Settings" to="." method="_on_settings_pressed"]

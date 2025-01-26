@@ -24,6 +24,7 @@ var delta_sum: float = 0
 var target_rot: Quaternion = Quaternion(transform.basis)
 var target_pos: Transform3D = transform
 
+var deathReason: String = ""
 # src: https://www.reddit.com/r/godot/comments/8ft84k/deleted_by_user/
 func get_obj():
 	var mouse = get_viewport().get_mouse_position()
@@ -152,6 +153,7 @@ func has_item(item: String):
 
 
 func _on_time_until_demise_timeout() -> void:
-	
-	#queue_free()
-	pass # Replace with function body.
+	die()
+
+func die() -> void:
+	get_tree().change_scene_to_file("res://scenet/MainMenu.tscn")

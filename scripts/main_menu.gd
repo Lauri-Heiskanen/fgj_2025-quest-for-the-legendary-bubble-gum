@@ -6,7 +6,7 @@ signal btn_settings()
 signal btn_credits()
 signal btn_exit()
 
-@onready var world = preload("res://scenet/World.tscn")
+@onready var level = preload("res://level/level 0.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(world)
+	get_tree().change_scene_to_packed(level)
 
 
 func _on_credits_pressed() -> void:

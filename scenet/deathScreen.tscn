@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx5eoeu2jlx8s"]
+
+[ext_resource type="Script" path="res://scripts/death_screen.gd" id="1_4as1k"]
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchor_right = 1.667
+anchor_bottom = 1.667
+offset_right = -0.384033
+offset_bottom = -0.216064
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4as1k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.6
+anchor_bottom = 0.603
+offset_right = -0.153687
+offset_bottom = -0.486938
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+anchor_right = 0.6
+anchor_bottom = 0.598
+offset_right = -0.153687
+offset_bottom = -1076.49
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Oh noes[b]
+
+You have died to:
+[color=red][i]{insert death here}[i][/color]
+
+Unfortunatly you are not able to chew the legendary bubblegum.
+
+Now the world is unchanged."
+fit_content = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.6
+anchor_bottom = 0.6
+offset_right = -0.153687
+offset_bottom = -0.0864258
+color = Color(0.498039, 0.745098, 1, 1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/door_way.gd" id="1_yw2p0"]
 [ext_resource type="PackedScene" uid="uid://bjc2v77imhsk1" path="res://3dModels/doorway.glb" id="2_p4ssv"]
-[ext_resource type="PackedScene" uid="uid://bseox1t7ydvmo" path="res://objects/door.tscn" id="3_1oxid"]
+[ext_resource type="PackedScene" uid="uid://ikciys8o8jjj" path="res://objects/door.tscn" id="3_1oxid"]
 
 [node name="DoorWay" type="Node3D"]
 script = ExtResource("1_yw2p0")
