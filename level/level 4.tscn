@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://w3kbd7x3lwvn"]
+
+[ext_resource type="MeshLibrary" uid="uid://caa2gtvfu3lqg" path="res://meshlib/meshLib2.tres" id="1_ntw2w"]
+[ext_resource type="PackedScene" uid="uid://1ohsnw7del1s" path="res://scenet/player.tscn" id="2_3wi43"]
+
+[node name="Level4" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_ntw2w")
+cell_size = Vector3(4, 4, 4)
+
+[node name="Player" parent="." instance=ExtResource("2_3wi43")]
