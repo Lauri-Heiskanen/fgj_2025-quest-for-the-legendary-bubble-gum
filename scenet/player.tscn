@@ -14,7 +14,6 @@ size = Vector3(0.4, 0.4, 0.4)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dbqef")
-time_until_demise = 40
 
 [node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_xby0o")

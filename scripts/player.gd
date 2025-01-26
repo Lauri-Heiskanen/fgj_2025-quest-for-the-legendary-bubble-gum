@@ -113,16 +113,14 @@ func _input(event: InputEvent) -> void:
 		print(sel)
 		if !sel.has("collider"):
 			return
-		print(sel["collider"])
-		var body : StaticBody3D = sel["collider"]
-		print(body.has_method("set_condition"))
+		print("Coll: ", sel["collider"])
+		var body = sel["collider"]
 		if body.has_method("set_condition"):
-			print(body.get_itemname())
-			print(player_items.has(body.get_itemname()))
+			print("req: ", body.get_itemname())
+			print("items: ", player_items)
 			if player_items.has(body.get_itemname()):
-				body.set_condition(true)	
+				body.set_condition(true)
 				print("Item found from inv")
-			
 			
 
 func add_item(item: String):
