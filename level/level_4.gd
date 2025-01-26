@@ -1,6 +1,7 @@
 extends Node3D
 
 var levelUp = false
+var trap_enabled = true
 
 func _ready():
 	$Door2.openDoor()
@@ -30,20 +31,27 @@ func _on_lever_send_button_state(id, toggle_state):
 		if toggle_state:
 			$Door2.closeDoor()
 			$Door5.openDoor()
+			$DoorWay2.openDoor()
 		else:
 			$Door5.closeDoor()
 			$Door2.openDoor()
+			$DoorWay2.closeDoor()
 	elif id == 2:
 		if toggle_state:
 			$Door3.closeDoor()
 			$Door4.openDoor()
+			$DoorWay.openDoor()
 		else:
 			$Door4.closeDoor()
 			$Door3.openDoor()
+			$DoorWay.closeDoor()
 
 func _on_area_3d_2_body_entered(body):
-	$Door.openDoor()
-	$Door6.openDoor()
-	$Door7.openDoor()
-	$Door4.closeDoor()
-	$Door5.closeDoor()
+	if trap_enabled:
+		print("asdasda")
+		trap_enabled = false
+		$DoorWay2.closeDoor()
+		$Door.openDoor()
+		$Door7.openDoor()
+		$Door4.closeDoor()
+		$Door5.closeDoor()
