@@ -1,59 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bq0cgdjm7pkje"]
+[gd_scene load_steps=2 format=3 uid="uid://bq0cgdjm7pkje"]
 
 [ext_resource type="Script" path="res://scripts/credits.gd" id="1_qhe3g"]
 
-[sub_resource type="GDScript" id="GDScript_h6hqv"]
-script/source = "extends RichTextLabel
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="Credits" type="Control"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhe3g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.119144, 0.349911, 0.360597, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 40
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -89.5
+offset_right = 64.5
+offset_bottom = 89.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qhe3g")
 
-[node name="Title" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = -25.0
-offset_top = -272.0
-offset_right = 39.0
-offset_bottom = -246.0
-text = "Credits:"
-script = SubResource("GDScript_h6hqv")
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Credits:
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -61.0
-offset_top = -174.0
-offset_right = 65.0
-offset_bottom = -47.0
-text = "Creators:
 Konsta Jalkanen
 Teemu Hiltunen
 Lauri Heiskanen
-Jesse Nissinen"
+Jesse Nissinen
+Kasperi Jalkanen"
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = -511.0
-offset_top = -296.0
-offset_right = -388.0
-offset_bottom = -227.0
-text = "Back"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

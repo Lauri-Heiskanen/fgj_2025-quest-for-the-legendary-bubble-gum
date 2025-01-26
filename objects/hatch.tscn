@@ -1,15 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmi1idssn5b5d"]
+[gd_scene load_steps=9 format=3 uid="uid://cmi1idssn5b5d"]
 
 [ext_resource type="Script" path="res://scripts/hatch.gd" id="1_sthfn"]
+[ext_resource type="Texture2D" uid="uid://dqkubr22oqx8c" path="res://3dModels/cave_bakedColor.png" id="2_8av1f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25v2l"]
 size = Vector3(0.1, 1.1, 1.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rk42k"]
-albedo_color = Color(0.419813, 0.419813, 0.419813, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53vwk"]
+albedo_texture = ExtResource("2_8av1f")
 
 [sub_resource type="BoxMesh" id="BoxMesh_4xf3s"]
-material = SubResource("StandardMaterial3D_rk42k")
+material = SubResource("StandardMaterial3D_53vwk")
 size = Vector3(0.1, 1.1, 1.1)
 
 [sub_resource type="Animation" id="Animation_jm66k"]

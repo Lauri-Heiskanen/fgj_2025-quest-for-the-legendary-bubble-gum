@@ -25,7 +25,7 @@ func _on_level_end_body_entered(body: Node3D) -> void:
 		levelUp = true
 
 
-func _on_conditional_action_send_state(name: String, state: bool) -> void:
+func _on_conditional_action_send_state(id: int, state: bool) -> void:
 	#print("Condition met")
 	wall.play_anim(wall_state)
 	wall_state = !wall_state
